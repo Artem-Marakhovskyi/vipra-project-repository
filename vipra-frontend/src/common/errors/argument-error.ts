@@ -1,16 +1,13 @@
 import { ErrorReason } from './error-reason';
 
-export class ArgumentEror extends Error {
+export class ArgumentError extends Error {
 
-    public reason : ErrorReason;
-    public argumentName : string;
-
-    constructor(reason : ErrorReason, argumentName? : string) {
-        super(reason.toString());
-
-        this.reason = reason;
-        this.argumentName = argumentName;
-    }
+    constructor(
+        public reason : string, 
+        public argumentName? : string) {
+            super();
+            this.message = this.toString();
+        }
 
     public toString(){
         var result = '';
@@ -18,6 +15,8 @@ export class ArgumentEror extends Error {
             result = 'Argument name: ' + this.argumentName + ', ';
         }
 
-        result += 'Reason: ' + reason.toString();
+        result += 'Reason: ' + this.reason;
+
+        return result;
     }
 }

@@ -1,44 +1,87 @@
 import { Injectable } from '@angular/core';
-import { ContentfulValues } from '../infrastructure/index';
+import { ArgumentError } from '../errors/argument-error';
+import { ErrorReason } from '../errors/error-reason';
+import { ContentfulValues } from '../infrastructure/contentful-values';
+import { Observable } from 'rxjs/Observable';
+
 const contentful = require('contentful');
 
-
-
-[Injectable]
+@Injectable()
 export class ContentfulService {
 
     private client : any;
 
-    public constructor(private contentfulValues: ContentfulValues) {
+    public constructor(
+        private contentfulValues: ContentfulValues,
+        private errorTypes : ErrorReason) {
         this.client = contentful.createClient({
             space: contentfulValues.SPACE_ID,
             accessToken: contentfulValues.ACCESS_TOKEN
         });
     }
 
-    public entries<T>(
+    public ofContentType<T>(
         contentTypeId : string,
         orderField : string,
+        mappingFunction : (arg : any) => T,
         reverseOrder : boolean = false,
-        limit : number = 100,
+        take : number = 100,
         skip : number = 0)
-        : T[] {
-        
-            if (contentTypeId.length === 0){
-                throw new Erro
+        : Promise<T[]> {
+            if (contentTypeId.length === 0) {
+                throw new ArgumentError(this.errorTypes.Inconsistency, "contentTypeId");
             }
 
-            return this.client.getEntries({
+            var returnList = [];
+
+            let paramObj : any = {
                 content_type: contentTypeId,
-                order: reverseOrder ? orderField : '-'+orderField,
-                limit: limit,
+                limit: take,
                 skip: skip
-            }).then(response => response.items.map(map<T>));
+            };
+
+            if (orderField) {
+                paramObj.order = reverseOrder ? orderField : '-'+ orderField;
+            }
+
+            return this.client.getEntries(
+                paramObj
+            ).then(
+                    response => response.items.map(mappingFunction)
+            ).catch(
+                () => 
+                {
+                    throw new Error('Problem with rertieving data');
+                });
+    }
+
+    public entry<T>(
+        entryId : string,
+        mappingFunction : <T>(arg : any) => T
+    ) {
+        if (entryId.length === 0){
+            throw new ArgumentError(this.errorTypes.Inconsistency, "entryId");
         }
+
+        return this.client.getEntry(entryId)
+            .then((response) => mappingFunction(response))
+            .catch(
+                () => 
+                {
+                    throw new Error('Problem with rertieving entry');
+                });        
     }
 
-    public map<T>(item : any) {
-
+    public asset(
+        assetId : string
+    ) : string
+    {
+        return this.client.getAsset(assetId)
+            .then((response) => response.fields.file.url)
+            .catch(
+                () => 
+                {
+                    throw new Error('Problem with rertieving entry');
+                });     
     }
-
 }
