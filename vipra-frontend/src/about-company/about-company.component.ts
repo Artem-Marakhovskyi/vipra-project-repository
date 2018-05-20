@@ -4,6 +4,7 @@ import { ContentfulService } from '../common/services/contentful-service';
 import { AboutCompany } from '../common/entities/about-company';
 import { mapAboutCompany } from '../common/mappingLayer/mapper';
 import { Logger } from 'angular2-logger/core';
+import { ModalService } from '../common/infrastructure/modal-service';
 
 @Component({
   selector: 'about-company',
@@ -17,6 +18,7 @@ export class AboutCompanyComponent implements OnInit{
 
   public constructor(
     private _contentfulService : ContentfulService,
+    private _modalService : ModalService,
     private _logger : Logger
   ) { }
 

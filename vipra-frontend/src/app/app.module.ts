@@ -7,11 +7,14 @@ import { ErrorReason } from '../common/errors/error-reason';
 import { ContentfulValues } from '../common/infrastructure/contentful-values';
 import { Logger } from 'angular2-logger/core';
 import { AboutCompanyComponent } from '../about-company/about-company.component';
+import { ModalService } from '../common/infrastructure/modal-service';
+import { ModalComponent } from '../common/infrastructure/modals/modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AboutCompanyComponent
+    AboutCompanyComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule
@@ -20,7 +23,8 @@ import { AboutCompanyComponent } from '../about-company/about-company.component'
     ContentfulValues,
     ErrorReason,
     ContentfulService,
-    Logger
+    Logger,
+    ModalService
   ],
   bootstrap: [AppComponent]
 })

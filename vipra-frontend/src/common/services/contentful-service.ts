@@ -3,8 +3,7 @@ import { ArgumentError } from '../errors/argument-error';
 import { ErrorReason } from '../errors/error-reason';
 import { ContentfulValues } from '../infrastructure/contentful-values';
 import { Observable } from 'rxjs/Observable';
-
-const contentful = require('contentful');
+import { createClient, Entry } from 'contentful';
 
 @Injectable()
 export class ContentfulService {
@@ -14,7 +13,7 @@ export class ContentfulService {
     public constructor(
         private contentfulValues: ContentfulValues,
         private errorTypes : ErrorReason) {
-        this.client = contentful.createClient({
+        this.client = createClient({
             space: contentfulValues.SPACE_ID,
             accessToken: contentfulValues.ACCESS_TOKEN
         });
