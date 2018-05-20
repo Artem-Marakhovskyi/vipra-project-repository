@@ -15,6 +15,7 @@ export class AboutCompanyComponent implements OnInit{
   
   title : string;
   content : string;
+  fullImagePath = '/assets/dog.jpg';
 
   public constructor(
     private _contentfulService : ContentfulService,
