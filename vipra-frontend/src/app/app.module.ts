@@ -5,10 +5,10 @@ import { AppComponent } from './app.component';
 import { ContentfulService } from '../common/services/contentful-service';
 import { ErrorReason } from '../common/errors/error-reason';
 import { ContentfulValues } from '../common/infrastructure/contentful-values';
-import { Logger } from 'angular2-logger/core';
 import { AboutCompanyComponent } from '../about-company/about-company.component';
 import { ModalService } from '../common/infrastructure/modal-service';
 import { ModalComponent } from '../common/infrastructure/modals/modal.component';
+import { SharedModule } from '../components/common/shared.module';
 
 @NgModule({
   declarations: [
@@ -17,13 +17,13 @@ import { ModalComponent } from '../common/infrastructure/modals/modal.component'
     ModalComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    SharedModule.forRoot()
   ],
   providers: [
     ContentfulValues,
     ErrorReason,
     ContentfulService,
-    Logger,
     ModalService
   ],
   bootstrap: [AppComponent]

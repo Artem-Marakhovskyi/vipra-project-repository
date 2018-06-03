@@ -3,7 +3,6 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { ContentfulService } from '../common/services/contentful-service';
 import { AboutCompany } from '../common/entities/about-company';
 import { mapAboutCompany } from '../common/mappingLayer/mapper';
-import { Logger } from 'angular2-logger/core';
 import { ModalService } from '../common/infrastructure/modal-service';
 
 @Component({
@@ -20,7 +19,6 @@ export class AboutCompanyComponent implements OnInit{
   public constructor(
     private _contentfulService : ContentfulService,
     private _modalService : ModalService,
-    private _logger : Logger
   ) { }
 
   ngOnInit(): void {
@@ -30,8 +28,6 @@ export class AboutCompanyComponent implements OnInit{
       mapAboutCompany
     ).then(
       (data) => {      
-        this._logger.debug('received [About Company] objects from CMS');
-        this._logger.debug(data);
         this.title = data[0].title;
         this.content = data[0].about;
       });
