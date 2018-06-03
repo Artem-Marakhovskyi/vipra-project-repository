@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-
-import { ModalComponent } from './modals/modal.component';
-
+import { ModalComponent } from '../components/modal/modal.component';
 
 /**
 * ModalService - Service used to interact with the Modal Component

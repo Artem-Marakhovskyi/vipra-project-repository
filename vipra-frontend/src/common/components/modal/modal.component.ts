@@ -1,6 +1,5 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
-import { ModalService } from '../modal-service';
-
+import { ModalService } from '../../infrastructure/modal-service';
 
 /**
  * ModalComponent - This class represents the modal component.

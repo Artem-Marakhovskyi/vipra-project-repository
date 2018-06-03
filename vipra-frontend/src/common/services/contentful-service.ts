@@ -56,7 +56,7 @@ export class ContentfulService {
 
     public entry<T>(
         entryId : string,
-        mappingFunction : <T>(arg : any) => T
+        mappingFunction : (arg : any) => T
     ) {
         if (entryId.length === 0){
             throw new ArgumentError(this.errorTypes.Inconsistency, "entryId");
