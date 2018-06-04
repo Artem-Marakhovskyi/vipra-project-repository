@@ -1,6 +1,6 @@
 export class Contact {
 
-    public Title : string;
+    public title : string;
 
-    public Content : string;
+    public content : string;
 }

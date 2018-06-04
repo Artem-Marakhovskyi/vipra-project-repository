@@ -27,6 +27,6 @@ export class LogoComponent implements OnInit {
         let assetLink = this.contentfulService
             .entry<Image>(LogoComponent.LOGO_ENTRY_ID, mapImage);
         
-            this.contentfulService.asset(assetLink.assetId);
+            this.contentfulService.obtainAssetUrl(assetLink.assetId);
     }
 }

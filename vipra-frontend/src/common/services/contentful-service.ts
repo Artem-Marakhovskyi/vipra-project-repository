@@ -4,6 +4,7 @@ import { ErrorReason } from '../errors/error-reason';
 import { ContentfulValues } from '../infrastructure/contentful-values';
 import { Observable } from 'rxjs/Observable';
 import { createClient, Entry } from 'contentful';
+import { Asset } from '../entities/asset';
 
 @Injectable()
 export class ContentfulService {
@@ -67,11 +68,11 @@ export class ContentfulService {
             .catch(
                 () => 
                 {
-                    throw new Error('Problem with rertieving entry');
+                    throw new Error(`Problem with rertieving entry ${entryId}`);
                 });        
     }
 
-    public asset(
+    public obtainAssetUrl(
         assetId : string
     ) : string
     {
@@ -80,7 +81,31 @@ export class ContentfulService {
             .catch(
                 () => 
                 {
-                    throw new Error('Problem with rertieving entry');
+                    throw new Error(`Problem with rertieving entry ${assetId}`);
                 });     
+    }
+
+    public obtainAsset(
+        assetId : string
+    ) : Asset
+    {
+        return this.client.getAsset(assetId)
+            .then(this.mapAsset)
+            .catch(
+                () => 
+                {
+                    throw new Error(`Problem with rertieving asset ${assetId}`);
+                });     
+    }
+
+    private mapAsset(item: any) {
+        return new Asset(
+            item.fields.title,
+            item.fields.description,
+            item.fields.file.url,
+            item.fields.file.details.image.width,
+            item.fields.file.details.image.height,
+            item.fields.file.contentType
+        );
     }
 }
