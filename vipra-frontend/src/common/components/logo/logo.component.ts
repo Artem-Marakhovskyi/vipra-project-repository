@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { ContentfulService } from "../../services/contentful-service";
 import { mapImage } from "../../mappingLayer/mapper";
 import { Image } from "../../entities/image";
+import { ImageService } from "../../entityServices/image-service";
 
 @Component({
     selector: 'logo',
@@ -14,19 +14,16 @@ export class LogoComponent implements OnInit {
 
     public imageUrl : string;
 
-    /**
-     *
-     */
     constructor(
-        private contentfulService : ContentfulService
+        private imageService : ImageService
     ) {
         
     }
 
     ngOnInit(): void {
-        let assetLink = this.contentfulService
-            .entry<Image>(LogoComponent.LOGO_ENTRY_ID, mapImage);
-        
-            this.contentfulService.obtainAssetUrl(assetLink.assetId);
+        this.imageService.getImageUrl(LogoComponent.LOGO_ENTRY_ID)
+            .subscribe(url => {
+                this.imageUrl = url;
+            });
     }
 }

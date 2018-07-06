@@ -26,7 +26,7 @@ export class AboutCompanyComponent implements OnInit{
       AboutCompany.CONTENT_TYPE_ID,
       AboutCompany.ORDER_FIELD,
       mapAboutCompany
-    ).then(
+    ).subscribe(
       (data) => {      
         this.title = data[0].title;
         this.content = data[0].about;

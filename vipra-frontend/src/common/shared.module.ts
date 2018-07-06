@@ -7,6 +7,9 @@ import { ContentfulService } from './services/contentful-service';
 import { ContentfulValues } from './infrastructure/contentful-values';
 import { ModalService } from './infrastructure/modal-service';
 import { ErrorReason } from './errors/error-reason';
+import { LogoComponent } from './components/logo/logo.component';
+import { ContentfulServiceLower } from './services/contentful-service-lower';
+import { ImageService } from './entityServices/image-service';
 
 
 @NgModule({
@@ -14,14 +17,17 @@ import { ErrorReason } from './errors/error-reason';
     declarations: [
         HeaderComponent,
         FooterComponent,
-        ModalComponent
+        ModalComponent,
+        LogoComponent,
     ],
     providers: [
-        ErrorReason
+        ErrorReason,
+        ContentfulServiceLower
     ],
     exports: [
         HeaderComponent,
         FooterComponent,
+        LogoComponent,
         ModalComponent
     ]
 })
@@ -32,7 +38,8 @@ export class SharedModule {
             providers: [
                 ContentfulService,
                 ContentfulValues,
-                ModalService
+                ModalService,
+                ImageService
             ]
         };
     }    
