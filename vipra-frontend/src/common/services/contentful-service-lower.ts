@@ -3,13 +3,14 @@ import { ArgumentError } from '../errors/argument-error';
 import { ErrorReason } from '../errors/error-reason';
 import { ContentfulValues } from '../infrastructure/contentful-values';
 import { Observable } from 'rxjs/Observable';
-import { createClient, Entry } from 'contentful';
+import { createClient, Entry, ContentfulClientApi } from 'contentful';
 import { Asset } from '../entities/asset';
+import { createWriteStream } from 'fs';
 
 @Injectable()
 export class ContentfulServiceLower {
 
-    private client : any;
+    private client : ContentfulClientApi;
 
     public constructor(
         private contentfulValues: ContentfulValues,
@@ -41,17 +42,24 @@ export class ContentfulServiceLower {
             };
 
             if (orderField) {
-                paramObj.order = reverseOrder ? orderField : '-'+ orderField;
+                paramObj.order = (reverseOrder ? '-' : '') + 'fields.' + orderField;
             }
 
             return this.client.getEntries(
                 paramObj
             ).then(
-                    response => response.items.map(mappingFunction)
+                    response => {
+                        var res = [];
+                        for (var i = 0; i < response.items.length; i++) {
+                            res.push(mappingFunction(response.items[i]));
+                        }
+
+                        return res;
+                    }
             ).catch(
-                () => 
+                (e) => 
                 {
-                    throw new Error('Problem with rertieving data');
+                    throw new Error('Problem with rertieving data.' + e);
                 });
     }
 

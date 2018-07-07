@@ -10,6 +10,8 @@ import { ErrorReason } from './errors/error-reason';
 import { LogoComponent } from './components/logo/logo.component';
 import { ContentfulServiceLower } from './services/contentful-service-lower';
 import { ImageService } from './entityServices/image-service';
+import { NavMenuComponent } from './components/navMenu/nav-menu.component';
+import { NavigationMenuService } from './entityServices/navigation-menu-service';
 
 
 @NgModule({
@@ -19,16 +21,17 @@ import { ImageService } from './entityServices/image-service';
         FooterComponent,
         ModalComponent,
         LogoComponent,
+        NavMenuComponent
     ],
     providers: [
         ErrorReason,
-        ContentfulServiceLower
+        ContentfulServiceLower,
+        NavigationMenuService
     ],
     exports: [
         HeaderComponent,
         FooterComponent,
-        LogoComponent,
-        ModalComponent
+        ModalComponent,
     ]
 })
 export class SharedModule {
