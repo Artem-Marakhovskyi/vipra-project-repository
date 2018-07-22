@@ -1,0 +1,48 @@
+$bgcolor : rgba(5, 45, 110, 1);
+
+:host {
+    position: relative;
+    top: 400px;
+}
+
+.centered-img {
+    display: block;
+    margin: 0 auto;
+}
+
+.margined {
+    margin-bottom: 40px;
+}
+
+.fullwidth {
+    width: 100%;
+}
+
+.info-block {
+    background-color : $bgcolor; 
+    padding: 20px;
+}
+
+.centered {
+    text-align: center;
+}
+
+.sub-h {
+    font-size: 1.5em;
+}
+
+.h {
+    font-size: 2em;
+}
+
+.bold {
+    font-weight: 900;
+}
+
+ul {
+    list-style-type: disc;
+}
+
+li {
+    padding: 15px 0px 0px 5px;
+}

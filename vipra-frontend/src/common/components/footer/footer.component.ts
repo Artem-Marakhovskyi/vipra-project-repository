@@ -6,5 +6,12 @@ import { Component } from "@angular/core";
     templateUrl: 'footer.component.html'
   })
 export class FooterComponent {
-    
+    public nowYear : string;
+
+    /**
+     *
+     */
+    constructor() {
+      this.nowYear = new Date().getFullYear().toString();
+    }
 }

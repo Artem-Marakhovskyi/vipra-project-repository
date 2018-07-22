@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ImageService } from '../common/entityServices/image-service';
+import { ImageService } from '../../common/entityServices/image-service';
 
 @Component({
   selector: 'welcome',
@@ -9,6 +9,9 @@ import { ImageService } from '../common/entityServices/image-service';
 export class WelcomeComponent implements OnInit {
 
   private static readonly IMAGE_ASSET_ID = "7JzHB2xMLSwWSwayqwIAKC";
+
+  public knowMore = "Узнать больше";
+  public callUs = "Связаться с нами";
 
   public backgroundUrl : string;
 

@@ -1,0 +1,32 @@
+img {
+    width: 100%;
+    top : 0px;
+    position: absolute;
+    z-index: -1;
+}
+
+.motto-container {
+    padding: 10px;
+    position: relative;
+    top: 180px;
+
+    * {
+        letter-spacing: .01em;
+    }
+
+    .motto-lg {
+        margin-bottom: 50px;
+    }
+
+    .motto-sm {
+        width:500px;
+    }
+}
+
+.button-container {
+    margin-top: 40px;
+}
+
+custom-button {
+    margin-left: 40px;
+}

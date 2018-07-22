@@ -1,0 +1,23 @@
+$borderColor : rgb(35, 73, 152);
+
+button {
+    border:none;
+    background: none;
+    height:50px;
+}
+
+button:hover {
+    border-radius: 25px;
+    background: $borderColor;
+}
+
+div {
+    border-width: 3px;
+    border-color: $borderColor;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+span {
+    font-weight: 800;
+}

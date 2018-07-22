@@ -1,7 +1,7 @@
-$background: #eee;
+$bgcolor: rgb(3, 33, 90);
 
 .footer {
-    background: $background;
+    background: $bgcolor;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -11,6 +11,10 @@ $background: #eee;
     padding: 1em;
 }
 
-.is-center {
+.righted {
+    text-align: right;
+}
 
+.padded {
+    padding-right: 20px;
 }
