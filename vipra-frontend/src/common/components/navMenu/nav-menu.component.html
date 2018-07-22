@@ -1,5 +1,5 @@
 <nav role="navigation">
     <ul *ngFor="let item of items">
-        <a >{{item.name}}</a>
+        <a [routerLink]="item.link">{{item.name}}</a>
     </ul>
 </nav>

@@ -1,6 +1,12 @@
 export class Contact {
 
-    public title : string;
+    public static readonly CONTENT_TYPE_ID = 'contact';
+    public static readonly ORDER_FIELD = 'order_field';
 
-    public content : string;
+    constructor(
+        public title : string,
+        public content : string,
+        public contactPerson : string,
+        public isPhone : boolean,
+        public order : number) { }
 }

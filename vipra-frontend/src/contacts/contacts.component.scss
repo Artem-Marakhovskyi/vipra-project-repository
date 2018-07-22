@@ -1,0 +1,15 @@
+$bgColor : #03215a;
+$height : 1000px;
+
+:host {
+    height : $height;
+}
+.nav-margined {
+    position: relative;
+    top: 120px;
+}
+
+.contacts-container {
+    background-color: $bgColor;
+    height: $height;
+}

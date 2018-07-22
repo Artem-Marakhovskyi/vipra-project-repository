@@ -1,0 +1,11 @@
+<div class="text-centered">
+        <img src="/assets/u346.png">
+        <div *ngFor="let contact of phoneContacts">
+                <contact [content]="contact"></contact>
+        </div>
+
+        <img class="margin-top" src="/assets/u347.png">
+        <div *ngFor="let contact of nonPhoneContacts">
+                <contact [content]="contact"></contact>
+        </div>
+</div>

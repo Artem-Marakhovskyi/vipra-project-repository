@@ -13,11 +13,17 @@ import { ImageService } from './entityServices/image-service';
 import { NavMenuComponent } from './components/navMenu/nav-menu.component';
 import { NavigationMenuService } from './entityServices/navigation-menu-service';
 import { CustomButtonComponent } from './components/elements/customButton/custom-button.component';
+import { RouterModule } from '@angular/router';
+import { MapComponent } from './map/map.component';
 
 
 @NgModule({
-    imports: [CommonModule],
+    imports: [
+        CommonModule,
+        RouterModule
+    ],
     declarations: [
+        MapComponent,
         HeaderComponent,
         FooterComponent,
         ModalComponent,
@@ -28,12 +34,13 @@ import { CustomButtonComponent } from './components/elements/customButton/custom
     providers: [
         ErrorReason,
         ContentfulServiceLower,
-        NavigationMenuService
+        NavigationMenuService,
     ],
     exports: [
         HeaderComponent,
         FooterComponent,
         ModalComponent,
+        MapComponent,
         CustomButtonComponent
     ]
 })

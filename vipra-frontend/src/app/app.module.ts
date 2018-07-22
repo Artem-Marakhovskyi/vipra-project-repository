@@ -1,20 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { AboutCompanyComponent } from '../about-company/about-company.component';
 import { SharedModule } from '../common/shared.module';
 import { WelcomeComponent } from '../home/welcome/welcome.component';
-import { HomeModule } from '../home/home.module';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app.routing';
+import { ContactsModule } from '../contacts/contacts.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AboutCompanyComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     SharedModule.forRoot(),
-    HomeModule.forRoot()
+    ContactsModule,
+    AppRoutingModule
   ],
   providers: [
   ],
