@@ -1,8 +1,12 @@
+$height: 600px;
+
 img {
     width: 100%;
     top : 0px;
     position: absolute;
+    height: $height;
     z-index: -1;
+    object-fit: cover;
 }
 
 .motto-container {
@@ -29,4 +33,8 @@ img {
 
 custom-button {
     margin-left: 40px;
+}
+
+div.pure-g {
+    height: $height;
 }
