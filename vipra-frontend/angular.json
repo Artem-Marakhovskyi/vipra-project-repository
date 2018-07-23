@@ -21,6 +21,7 @@
             ],
             "styles": [
               "src/styles.css",
+              "node_modules/leaflet/dist/leaflet.css",
               "node_modules/roboto-fontface/css/roboto/roboto-fontface.css"
             ],
             "scripts": []

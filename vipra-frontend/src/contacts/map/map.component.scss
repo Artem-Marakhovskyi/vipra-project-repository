@@ -1,0 +1,25 @@
+$width : 500px;
+$height : 400px;
+
+#map-container {
+    height: $height; 
+    width: $width;
+    margin: 20px auto;
+}
+
+:host {
+    text-align: center;
+}
+
+.large {
+    font-size: x-large;
+    font-weight: 900;
+}
+
+span.large {
+    margin-left: 20px;
+}
+
+.left-aligned {
+    text-align: left;
+}

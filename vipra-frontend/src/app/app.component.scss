@@ -3,3 +3,7 @@ app-header {
     top: 0px;
     width:100%;    
 }
+
+:host {
+    min-width: 100%;
+}

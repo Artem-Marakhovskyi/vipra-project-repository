@@ -14,8 +14,6 @@ import { NavMenuComponent } from './components/navMenu/nav-menu.component';
 import { NavigationMenuService } from './entityServices/navigation-menu-service';
 import { CustomButtonComponent } from './components/elements/customButton/custom-button.component';
 import { RouterModule } from '@angular/router';
-import { MapComponent } from './map/map.component';
-
 
 @NgModule({
     imports: [
@@ -23,7 +21,6 @@ import { MapComponent } from './map/map.component';
         RouterModule
     ],
     declarations: [
-        MapComponent,
         HeaderComponent,
         FooterComponent,
         ModalComponent,
@@ -40,7 +37,6 @@ import { MapComponent } from './map/map.component';
         HeaderComponent,
         FooterComponent,
         ModalComponent,
-        MapComponent,
         CustomButtonComponent
     ]
 })

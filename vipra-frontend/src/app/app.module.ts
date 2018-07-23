@@ -6,6 +6,7 @@ import { WelcomeComponent } from '../home/welcome/welcome.component';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 import { ContactsModule } from '../contacts/contacts.module';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ContactsModule } from '../contacts/contacts.module';
     BrowserModule,
     SharedModule.forRoot(),
     ContactsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    LeafletModule.forRoot()
   ],
   providers: [
   ],
