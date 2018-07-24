@@ -12,6 +12,8 @@ export class LogoComponent implements OnInit {
  
     private static readonly LOGO_ENTRY_ID = "2UymGvlNhCoUsuags8mSqo";
 
+    public homeLink = 'home';
+
     public imageUrl : string;
 
     constructor(

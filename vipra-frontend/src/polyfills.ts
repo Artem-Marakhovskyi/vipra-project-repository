@@ -42,12 +42,6 @@ import 'core-js/es6/reflect';
 import 'core-js/es7/reflect';
 
 
-
-import 'leaflet/dist/leaflet.css';
-import 'leaflet/dist/images/marker-shadow.png';
-import 'leaflet/dist/images/marker-icon.png';
-
-
 /**
  * Required to support Web Animations `@angular/platform-browser/animations`.
  * Needed for: All but Chrome, Firefox and Opera. http://caniuse.com/#feat=web-animation

@@ -14,6 +14,7 @@ import { NavMenuComponent } from './components/navMenu/nav-menu.component';
 import { NavigationMenuService } from './entityServices/navigation-menu-service';
 import { CustomButtonComponent } from './components/elements/customButton/custom-button.component';
 import { RouterModule } from '@angular/router';
+import { LightBackgroundDirective } from './directives/light-background/light-background.directive';
 
 @NgModule({
     imports: [
@@ -26,7 +27,8 @@ import { RouterModule } from '@angular/router';
         ModalComponent,
         LogoComponent,
         NavMenuComponent,
-        CustomButtonComponent
+        CustomButtonComponent,
+        LightBackgroundDirective
     ],
     providers: [
         ErrorReason,
@@ -37,7 +39,8 @@ import { RouterModule } from '@angular/router';
         HeaderComponent,
         FooterComponent,
         ModalComponent,
-        CustomButtonComponent
+        CustomButtonComponent,
+        LightBackgroundDirective
     ]
 })
 export class SharedModule {

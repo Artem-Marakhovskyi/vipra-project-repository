@@ -1,5 +1,5 @@
-$bgColor : #03215a;
-$height : 1000px;
+$bgColor : #052d6e;
+$height : 100%;
 
 .nav-margined {
     position: relative;
@@ -8,5 +8,5 @@ $height : 1000px;
 
 .contacts-container {
     background-color: $bgColor;
-    // height: $height;
+    min-height: $height;
 }

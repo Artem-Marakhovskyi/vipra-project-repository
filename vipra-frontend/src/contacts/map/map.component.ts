@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { latLng, tileLayer } from 'leaflet';
+import { latLng, tileLayer, circle } from 'leaflet';
 
 @Component({
   selector: 'app-map',
@@ -18,10 +18,11 @@ export class MapComponent implements OnInit{
   ngOnInit(): void {
     this.options = {
       layers: [
+        circle([ 50.059998, 36.169942 ], { radius: 200 }),
         tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: 'Open Street Map' })
       ],
-      zoom: 5,
-      center: latLng(46.879966, -121.726909)
+      zoom: 11.8,
+      center: latLng(50.03, 36.21)
     };
   }
 }
