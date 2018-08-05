@@ -1,5 +1,5 @@
 import { Component, Input, Output } from "@angular/core";
-import { EventEmitter } from "events";
+import { EventEmitter } from "@angular/core";
 
 @Component({
     selector: 'custom-button',

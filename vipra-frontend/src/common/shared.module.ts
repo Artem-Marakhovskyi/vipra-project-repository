@@ -15,6 +15,10 @@ import { NavigationMenuService } from './entityServices/navigation-menu-service'
 import { CustomButtonComponent } from './components/elements/customButton/custom-button.component';
 import { RouterModule } from '@angular/router';
 import { LightBackgroundDirective } from './directives/light-background/light-background.directive';
+import { BusService } from './infrastructure/bus-service';
+import { Pingable } from './infrastructure/pingable';
+import { CallingBusService } from './infrastructure/calling-bus-service';
+import { MailSender } from './infrastructure/mail-sender';
 
 @NgModule({
     imports: [
@@ -33,7 +37,7 @@ import { LightBackgroundDirective } from './directives/light-background/light-ba
     providers: [
         ErrorReason,
         ContentfulServiceLower,
-        NavigationMenuService,
+        NavigationMenuService
     ],
     exports: [
         HeaderComponent,
@@ -51,7 +55,10 @@ export class SharedModule {
                 ContentfulService,
                 ContentfulValues,
                 ModalService,
-                ImageService
+                ImageService,
+                BusService,
+                CallingBusService,
+                MailSender
             ]
         };
     }    

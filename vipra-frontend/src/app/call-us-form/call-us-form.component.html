@@ -1,0 +1,25 @@
+<app-modal modalId="callFormId" blocking="false" closebtn="true" modalTitle="Оставьте контактные данные" class="pure-form pure-form-stacked">
+        <div class="content">
+                <fieldset>
+                        <legend>В качестве обратного контакта оставьте адрес электронный почты или номер телефон. Мы Вам перезвоним.</legend>
+                        <form [formGroup]="callForm" action="https://formspree.io/vipra.internal@gmail.com" method="POST">
+                                <div>
+                                        <label for="username">Имя</label>
+                                </div>
+                                <input class="v-3-4" formControlName="username" required/> 
+                                <div>
+                                        <label class="oneline" type="email" for="email">Адрес электронной почты</label>
+                                        <span class="red" *ngIf="emailError">Неверный формат</span>
+                                </div>
+                                <input class="v-3-4" formControlName="email"/>
+                                <label for="phone">Номер телефона</label>
+                                <input class="v-3-4" formControlName="phone"/>
+                                <label for="comment">Комментарий (по желанию)</label>
+                                <textarea formControlName="comment"></textarea>
+                                <div class="centered">
+                                        <input type="submit" class="pure-button pure-button-primary">Подтвердить</button>
+                                </div>
+                        </form>
+                </fieldset>
+        </div>   
+</app-modal>

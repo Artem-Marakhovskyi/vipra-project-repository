@@ -2,11 +2,18 @@ $bgColor : #052d6e;
 $height : 100%;
 
 .nav-margined {
-    position: relative;
-    top: 120px;
+    top: 100px;
 }
 
 .contacts-container {
     background-color: $bgColor;
     min-height: $height;
+}
+
+.relative {
+    position: relative;
+}
+
+.centered {
+    text-align: center;
 }

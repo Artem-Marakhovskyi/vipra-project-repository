@@ -7,17 +7,21 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 import { ContactsModule } from '../contacts/contacts.module';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CallUsFormComponent } from './call-us-form/call-us-form.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CallUsFormComponent
   ],
   imports: [
     BrowserModule,
     SharedModule.forRoot(),
     ContactsModule,
     AppRoutingModule,
-    LeafletModule.forRoot()
+    LeafletModule.forRoot(),
+    ReactiveFormsModule
   ],
   providers: [
   ],
