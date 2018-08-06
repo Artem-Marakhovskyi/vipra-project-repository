@@ -8,6 +8,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous"></head>
   <link rel="stylesheet" type="text/html" href="./node_modules/leaflet/dist/leaflet.css">
+  <script src="https://smtpjs.com/v2/smtp.js"></script>
+  <script>
+    function a() {
+      console.log('hello');
+    }
+    function sendMail(subject, bodyMsg) {
+      Email.send("vipra.internal@gmail.com",
+            "vipra.internal@gmail.com",
+            subject,
+            bodyMsg,
+            "smtp25.elasticemail.com",
+            "vipra.internal@gmail.com",
+            "3d313101-6462-476e-8a70-2b3c24319cd7",
+            function done(message) {
+               console.log(message) 
+            } );
+    }
+  </script>
 <body>
   <root></root>
 </body>

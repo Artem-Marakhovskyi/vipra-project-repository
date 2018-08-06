@@ -18,7 +18,7 @@ import { LightBackgroundDirective } from './directives/light-background/light-ba
 import { BusService } from './infrastructure/bus-service';
 import { Pingable } from './infrastructure/pingable';
 import { CallingBusService } from './infrastructure/calling-bus-service';
-import { MailSender } from './infrastructure/mail-sender';
+import { MailCreator } from './infrastructure/mail-creator';
 
 @NgModule({
     imports: [
@@ -58,7 +58,7 @@ export class SharedModule {
                 ImageService,
                 BusService,
                 CallingBusService,
-                MailSender
+                MailCreator
             ]
         };
     }    

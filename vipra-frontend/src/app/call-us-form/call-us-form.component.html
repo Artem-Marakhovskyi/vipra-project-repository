@@ -2,22 +2,28 @@
         <div class="content">
                 <fieldset>
                         <legend>В качестве обратного контакта оставьте адрес электронный почты или номер телефон. Мы Вам перезвоним.</legend>
-                        <form [formGroup]="callForm" action="https://formspree.io/vipra.internal@gmail.com" method="POST">
+                        <form [formGroup]="callForm" (submit)="post()">
                                 <div>
                                         <label for="username">Имя</label>
                                 </div>
-                                <input class="v-3-4" formControlName="username" required/> 
+                                <input class="v-3-4" formControlName="username"/> 
+
                                 <div>
                                         <label class="oneline" type="email" for="email">Адрес электронной почты</label>
                                         <span class="red" *ngIf="emailError">Неверный формат</span>
                                 </div>
                                 <input class="v-3-4" formControlName="email"/>
+
                                 <label for="phone">Номер телефона</label>
                                 <input class="v-3-4" formControlName="phone"/>
+
                                 <label for="comment">Комментарий (по желанию)</label>
                                 <textarea formControlName="comment"></textarea>
+
+                                <span class="red"> {{customError}}</span>
+                                <span class="green" *ngIf="success">Запрос на обратную связь успешно отправлен</span>
                                 <div class="centered">
-                                        <input type="submit" class="pure-button pure-button-primary">Подтвердить</button>
+                                        <button type="submit" class="pure-button pure-button-primary">Подтвердить</button>
                                 </div>
                         </form>
                 </fieldset>

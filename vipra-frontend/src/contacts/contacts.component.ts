@@ -23,5 +23,4 @@ export class ContactsComponent {
   public callUs() {
      this.callingCusService.callForm();
   }
-
 }

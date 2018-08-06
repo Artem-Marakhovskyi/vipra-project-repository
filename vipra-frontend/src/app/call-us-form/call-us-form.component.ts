@@ -5,6 +5,11 @@ import { Pingable } from '../../common/infrastructure/pingable';
 import { CallingBusService } from '../../common/infrastructure/calling-bus-service';
 import { ModalService } from '../../common/infrastructure/modal-service';
 import { FormControl, FormGroup, FormBuilder, ValidationErrors } from '@angular/forms';
+import { MailCreator } from '../../common/infrastructure/mail-creator';
+import { MailDetails } from '../../common/infrastructure/mail-details';
+import { Observable } from '../../../node_modules/rxjs';
+
+declare function sendMail(subject, bodyMsg) : void;
 
 @Component({
   selector: 'call-us-form',
@@ -12,6 +17,8 @@ import { FormControl, FormGroup, FormBuilder, ValidationErrors } from '@angular/
   styleUrls: ['./call-us-form.component.scss']
 })
 export class CallUsFormComponent implements Pingable, OnInit{
+
+    private static readonly FORM_ID = 'callFormId';
 
     private email: FormControl;
     private username: FormControl;
@@ -21,11 +28,14 @@ export class CallUsFormComponent implements Pingable, OnInit{
     private triedToPost : boolean;
     private emailError : boolean;
     private phoneError : boolean;
+    public customError : string;
+    private success : boolean;
 
     constructor(
         private busService : BusService,
         public modalService : ModalService,
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        private mailCreator : MailCreator
     ) {
     }
 
@@ -38,24 +48,45 @@ export class CallUsFormComponent implements Pingable, OnInit{
     }
 
     public ping(caller : Pingable) {
-        (<CallUsFormComponent>caller).modalService.open('callFormId');
+        (<CallUsFormComponent>caller).modalService.open(CallUsFormComponent.FORM_ID);
     }
 
     public post() {
         this.triedToPost = true;
         
-        this.emailError = !!this.email.errors;
-        this.phoneError = !!this.phone.errors;
+        this.emailError = !!this.validateEmail(this.email);
+        this.phoneError = !!this.validatePhone(this.phone);
 
-        if (this.emailError || this.phoneError)
+        if (this.emailError && this.phoneError)
         {
+            this.customError = 'Укажите адрес электронной почты или телефон';
             return;
         }
+
+        let mail = this.mailCreator.create(
+            new MailDetails(
+                this.username.value,
+                this.email.value,
+                this.phone.value,
+                this.comment.value
+            ));
+
+        sendMail(mail.subject, mail.subject);
 
         this.email.setValue('');
         this.username.setValue('');
         this.phone.setValue('');
         this.comment.setValue('');
+
+        this.emailError = false;
+        this.phoneError = false;
+
+        this.success = true;
+
+        setTimeout(() => {
+            this.modalService.close(CallUsFormComponent.FORM_ID)
+            this.success = false;
+        }, 3000);
     }
         
     private createFormGroup(fb: FormBuilder) {
@@ -69,15 +100,15 @@ export class CallUsFormComponent implements Pingable, OnInit{
 
     private subscribeToValueChanges() {
         this.email.setValidators(this.validateEmail);
+        this.phone.setValidators(this.validatePhone);
         this.email.valueChanges.subscribe(
             () => {
                 if (!this.triedToPost) {
                     return;
                 }
-
+                this.customError = '';
                 this.emailError = this.email.errors != null;
             });
-
     }
 
     private createFormControls() {
@@ -85,6 +116,14 @@ export class CallUsFormComponent implements Pingable, OnInit{
         this.username = new FormControl();
         this.phone = new FormControl();
         this.comment = new FormControl();
+    }
+
+    private validatePhone(pc : FormControl) : ValidationErrors {
+        if (!pc.value) {
+            return { phone : 1};
+        }
+
+        return null;
     }
 
     private validateEmail(fc : FormControl) : ValidationErrors {
