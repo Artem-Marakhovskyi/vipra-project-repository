@@ -5,8 +5,6 @@ import { Pingable } from '../../common/infrastructure/pingable';
 import { CallingBusService } from '../../common/infrastructure/calling-bus-service';
 import { ModalService } from '../../common/infrastructure/modal-service';
 import { FormControl, FormGroup, FormBuilder, ValidationErrors } from '@angular/forms';
-import { MailCreator } from '../../common/infrastructure/mail-creator';
-import { MailDetails } from '../../common/infrastructure/mail-details';
 import { Observable } from '../../../node_modules/rxjs';
 import { ContentfulManagementService } from '../../common/services/contentful-management-service-lower';
 import { CallbackRequest } from '../../common/infrastructure/callback-request';
@@ -37,7 +35,6 @@ export class CallUsFormComponent implements Pingable, OnInit{
         private busService : BusService,
         public modalService : ModalService,
         private fb: FormBuilder,
-        private mailCreator : MailCreator,
         private contentfulManagementService : ContentfulManagementService
     ) {
     }
