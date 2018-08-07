@@ -19,6 +19,7 @@ import { BusService } from './infrastructure/bus-service';
 import { Pingable } from './infrastructure/pingable';
 import { CallingBusService } from './infrastructure/calling-bus-service';
 import { MailCreator } from './infrastructure/mail-creator';
+import { ContentfulManagementService } from './services/contentful-management-service-lower';
 
 @NgModule({
     imports: [
@@ -53,6 +54,7 @@ export class SharedModule {
             ngModule: SharedModule,
             providers: [
                 ContentfulService,
+                ContentfulManagementService,
                 ContentfulValues,
                 ModalService,
                 ImageService,

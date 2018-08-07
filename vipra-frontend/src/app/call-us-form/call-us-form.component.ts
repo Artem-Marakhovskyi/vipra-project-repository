@@ -8,6 +8,8 @@ import { FormControl, FormGroup, FormBuilder, ValidationErrors } from '@angular/
 import { MailCreator } from '../../common/infrastructure/mail-creator';
 import { MailDetails } from '../../common/infrastructure/mail-details';
 import { Observable } from '../../../node_modules/rxjs';
+import { ContentfulManagementService } from '../../common/services/contentful-management-service-lower';
+import { CallbackRequest } from '../../common/infrastructure/callback-request';
 
 declare function sendMail(subject, bodyMsg) : void;
 
@@ -35,7 +37,8 @@ export class CallUsFormComponent implements Pingable, OnInit{
         private busService : BusService,
         public modalService : ModalService,
         private fb: FormBuilder,
-        private mailCreator : MailCreator
+        private mailCreator : MailCreator,
+        private contentfulManagementService : ContentfulManagementService
     ) {
     }
 
@@ -63,15 +66,10 @@ export class CallUsFormComponent implements Pingable, OnInit{
             return;
         }
 
-        let mail = this.mailCreator.create(
-            new MailDetails(
-                this.username.value,
-                this.email.value,
-                this.phone.value,
-                this.comment.value
-            ));
-
-        sendMail(mail.subject, mail.subject);
+        
+        this.contentfulManagementService.insert(
+            'callback_request',
+             new CallbackRequest(this.username.value, this.email.value, this.phone.value, this.comment.value));
 
         this.email.setValue('');
         this.username.setValue('');

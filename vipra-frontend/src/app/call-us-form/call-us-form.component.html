@@ -2,7 +2,7 @@
         <div class="content">
                 <fieldset>
                         <legend>В качестве обратного контакта оставьте адрес электронный почты или номер телефон. Мы Вам перезвоним.</legend>
-                        <form [formGroup]="callForm" (submit)="post()">
+                        <form [formGroup]="callForm">
                                 <div>
                                         <label for="username">Имя</label>
                                 </div>
@@ -23,7 +23,7 @@
                                 <span class="red"> {{customError}}</span>
                                 <span class="green" *ngIf="success">Запрос на обратную связь успешно отправлен</span>
                                 <div class="centered">
-                                        <button type="submit" class="pure-button pure-button-primary">Подтвердить</button>
+                                        <button type="buttom" (click)="post()" class="pure-button pure-button-primary">Подтвердить</button>
                                 </div>
                         </form>
                 </fieldset>
