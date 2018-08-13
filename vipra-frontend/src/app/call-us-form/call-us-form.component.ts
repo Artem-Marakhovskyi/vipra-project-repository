@@ -37,11 +37,11 @@ export class CallUsFormComponent implements Pingable, OnInit{
         private fb: FormBuilder,
         private contentfulManagementService : ContentfulManagementService
     ) {
+        this.busService.register(this, CallingBusService.FORM);
     }
 
 
     public ngOnInit(): void {
-        this.busService.register(this, CallingBusService.FORM);
         this.createFormControls();
         this.createFormGroup(this.fb);
         this.subscribeToValueChanges();

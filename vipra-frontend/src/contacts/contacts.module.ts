@@ -13,7 +13,7 @@ import { RequisitesComponent } from "./requisites/requisites.component";
 @NgModule({
     imports: [
         CommonModule, 
-        SharedModule.forRoot(),
+        SharedModule,
         LeafletModule,
         routing
     ],

@@ -7,6 +7,7 @@ export class BusService {
     private entryStorage : Array<BusEntry> = [];
 
     public call(id : string) {
+        console.log(this.entryStorage.length);
         let entry = this.findEntry(id);
         if (entry !== null) {
             entry.emitter.next(entry.pingable);

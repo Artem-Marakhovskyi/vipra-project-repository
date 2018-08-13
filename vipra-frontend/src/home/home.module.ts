@@ -9,7 +9,7 @@ import { routing } from "./home.routing";
 @NgModule({
     imports: [
         CommonModule, 
-        SharedModule.forRoot(),
+        SharedModule,
         routing
     ],
     declarations: [

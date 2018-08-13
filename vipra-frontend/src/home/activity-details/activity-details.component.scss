@@ -13,6 +13,14 @@ $bgcolor : rgba(5, 45, 110, 1);
     width: 100%;
 }
 
+
+.activity-content {
+    margin: 0 auto;
+    
+    max-width: 350px;
+}
+
+
 .info-block {
     background-color : $bgcolor; 
     padding: 20px;

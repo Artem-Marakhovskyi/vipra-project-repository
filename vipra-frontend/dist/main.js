@@ -577,7 +577,7 @@ module.exports = webpackAsyncContext;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-header class=\"pure-g\" lightBackground></app-header>\r\n<router-outlet></router-outlet>\r\n<app-footer></app-footer>\r\n<call-us-form></call-us-form>"
+module.exports = "\r\n<call-us-form></call-us-form>\r\n<app-header class=\"pure-g\" lightBackground></app-header>\r\n<router-outlet></router-outlet>\r\n<app-footer></app-footer>"
 
 /***/ }),
 
@@ -792,10 +792,10 @@ var CallUsFormComponent = /** @class */ (function () {
         this.modalService = modalService;
         this.fb = fb;
         this.contentfulManagementService = contentfulManagementService;
+        this.busService.register(this, _common_infrastructure_calling_bus_service__WEBPACK_IMPORTED_MODULE_2__["CallingBusService"].FORM);
     }
     CallUsFormComponent_1 = CallUsFormComponent;
     CallUsFormComponent.prototype.ngOnInit = function () {
-        this.busService.register(this, _common_infrastructure_calling_bus_service__WEBPACK_IMPORTED_MODULE_2__["CallingBusService"].FORM);
         this.createFormControls();
         this.createFormGroup(this.fb);
         this.subscribeToValueChanges();
@@ -969,7 +969,7 @@ var CustomButtonComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"footer l-box padded\">\r\n    <div class=\"pure-g\">\r\n        <div class=\"pure-u-1-24\"></div>\r\n        <div class=\"pure-u-5-24\">\r\n            <span>1994 - {{nowYear}} &copy; ООО НВП \"ВИПРА\"</span>\r\n        </div>\r\n        <div class=\"pure-u-17-24 righted\">\r\n            <span>Украина, Харьковская обл., пгт. Малая Даниловка, ул. Ленина, ХХ | тел. +38(050)ххх-хх-хх</span>\r\n        </div>\r\n        <div class=\"pure-u-1-24\"></div>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"footer l-box padded\">\r\n    <div class=\"pure-g\">\r\n        <div class=\"pure-u-1-24\"></div>\r\n        <div class=\"pure-u-5-24\">\r\n            <span>1994 - {{nowYear}} &copy; {{content.leftSide}}</span>\r\n        </div>\r\n        <div class=\"pure-u-17-24 righted\">\r\n            <span>{{content.rightSide}}</span>\r\n        </div>\r\n        <div class=\"pure-u-1-24\"></div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -995,6 +995,9 @@ module.exports = ".footer {\n  background: #03215a;\n  height: 20px;\n  bottom: 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FooterComponent", function() { return FooterComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _entities_footer_content__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../entities/footer-content */ "./src/common/entities/footer-content.ts");
+/* harmony import */ var _services_contentful_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/contentful-service */ "./src/common/services/contentful-service.ts");
+/* harmony import */ var _mappingLayer_mapper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../mappingLayer/mapper */ "./src/common/mappingLayer/mapper.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1005,20 +1008,30 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var FooterComponent = /** @class */ (function () {
     /**
      *
      */
-    function FooterComponent() {
+    function FooterComponent(contentfulService) {
+        this.contentfulService = contentfulService;
         this.nowYear = new Date().getFullYear().toString();
+        this.content = new _entities_footer_content__WEBPACK_IMPORTED_MODULE_1__["FooterContent"]('', '');
     }
+    FooterComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.contentfulService.ofContentType(_entities_footer_content__WEBPACK_IMPORTED_MODULE_1__["FooterContent"].CONTENT_TYPE, 'left_side', _mappingLayer_mapper__WEBPACK_IMPORTED_MODULE_3__["mapFooterContent"])
+            .subscribe(function (items) { return _this.content = items[0]; });
+    };
     FooterComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-footer',
             styles: [__webpack_require__(/*! ./footer.component.scss */ "./src/common/components/footer/footer.component.scss")],
             template: __webpack_require__(/*! ./footer.component.html */ "./src/common/components/footer/footer.component.html")
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_services_contentful_service__WEBPACK_IMPORTED_MODULE_2__["ContentfulService"]])
     ], FooterComponent);
     return FooterComponent;
 }());
@@ -1327,7 +1340,7 @@ var NavMenuComponent = /** @class */ (function () {
     NavMenuComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.navigationMenuService.getNavigationMenuItems()
-            .subscribe(function (result) { return _this.items = result; });
+            .subscribe(function (result) { return _this.items = result.filter(function (e) { return e.visible; }); });
     };
     NavMenuComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1408,6 +1421,30 @@ var AboutCompany = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/common/entities/activity.ts":
+/*!*****************************************!*\
+  !*** ./src/common/entities/activity.ts ***!
+  \*****************************************/
+/*! exports provided: Activity */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Activity", function() { return Activity; });
+var Activity = /** @class */ (function () {
+    function Activity(name, list) {
+        this.name = name;
+        this.list = list;
+        this.list = this.list.filter(function (e) { return e; });
+    }
+    Activity.CONTENT_TYPE_ID = 'activity';
+    return Activity;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/common/entities/asset.ts":
 /*!**************************************!*\
   !*** ./src/common/entities/asset.ts ***!
@@ -1461,6 +1498,29 @@ var Contact = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/common/entities/footer-content.ts":
+/*!***********************************************!*\
+  !*** ./src/common/entities/footer-content.ts ***!
+  \***********************************************/
+/*! exports provided: FooterContent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FooterContent", function() { return FooterContent; });
+var FooterContent = /** @class */ (function () {
+    function FooterContent(leftSide, rightSide) {
+        this.leftSide = leftSide;
+        this.rightSide = rightSide;
+    }
+    FooterContent.CONTENT_TYPE = 'footer_caption';
+    return FooterContent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/common/entities/image.ts":
 /*!**************************************!*\
   !*** ./src/common/entities/image.ts ***!
@@ -1484,6 +1544,30 @@ var Image = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/common/entities/motto.ts":
+/*!**************************************!*\
+  !*** ./src/common/entities/motto.ts ***!
+  \**************************************/
+/*! exports provided: Motto */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Motto", function() { return Motto; });
+var Motto = /** @class */ (function () {
+    function Motto(accentedText, additionalText, callbackText) {
+        this.accentedText = accentedText;
+        this.additionalText = additionalText;
+        this.callbackText = callbackText;
+    }
+    Motto.CONTENT_TYPE_ID = 'motto';
+    return Motto;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/common/entities/navigation-menu-item.ts":
 /*!*****************************************************!*\
   !*** ./src/common/entities/navigation-menu-item.ts ***!
@@ -1495,13 +1579,37 @@ var Image = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NavigationMenuItem", function() { return NavigationMenuItem; });
 var NavigationMenuItem = /** @class */ (function () {
-    function NavigationMenuItem(name, order, link) {
+    function NavigationMenuItem(name, order, link, visible) {
         this.name = name;
         this.order = order;
         this.link = link;
+        this.visible = visible;
     }
     NavigationMenuItem.CONTENT_TYPE_ID = 'navigation_element';
     return NavigationMenuItem;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/common/entities/requisites.ts":
+/*!*******************************************!*\
+  !*** ./src/common/entities/requisites.ts ***!
+  \*******************************************/
+/*! exports provided: Requisites */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Requisites", function() { return Requisites; });
+var Requisites = /** @class */ (function () {
+    function Requisites(subtitle, lines) {
+        this.subtitle = subtitle;
+        this.lines = lines;
+    }
+    Requisites.CONTENT_TYPE_ID = 'requisites';
+    return Requisites;
 }());
 
 
@@ -1699,6 +1807,7 @@ var BusService = /** @class */ (function () {
         this.entryStorage = [];
     }
     BusService.prototype.call = function (id) {
+        console.log(this.entryStorage.length);
         var entry = this.findEntry(id);
         if (entry !== null) {
             entry.emitter.next(entry.pingable);
@@ -1930,7 +2039,7 @@ var ModalService = /** @class */ (function () {
 /*!*******************************************!*\
   !*** ./src/common/mappingLayer/mapper.ts ***!
   \*******************************************/
-/*! exports provided: mapAboutCompany, mapImage, mapNavigationMenuItem, mapContact */
+/*! exports provided: mapAboutCompany, mapImage, mapNavigationMenuItem, mapContact, mapFooterContent, mapMotto, mapActivity, mapRequisites */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1939,10 +2048,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapImage", function() { return mapImage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapNavigationMenuItem", function() { return mapNavigationMenuItem; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapContact", function() { return mapContact; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapFooterContent", function() { return mapFooterContent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapMotto", function() { return mapMotto; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapActivity", function() { return mapActivity; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapRequisites", function() { return mapRequisites; });
 /* harmony import */ var _entities_about_company__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../entities/about-company */ "./src/common/entities/about-company.ts");
 /* harmony import */ var _entities_image__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../entities/image */ "./src/common/entities/image.ts");
 /* harmony import */ var _entities_navigation_menu_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../entities/navigation-menu-item */ "./src/common/entities/navigation-menu-item.ts");
 /* harmony import */ var _entities_contact__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../entities/contact */ "./src/common/entities/contact.ts");
+/* harmony import */ var _entities_footer_content__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../entities/footer-content */ "./src/common/entities/footer-content.ts");
+/* harmony import */ var _entities_motto__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../entities/motto */ "./src/common/entities/motto.ts");
+/* harmony import */ var _entities_activity__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../entities/activity */ "./src/common/entities/activity.ts");
+/* harmony import */ var _entities_requisites__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../entities/requisites */ "./src/common/entities/requisites.ts");
+
+
+
+
 
 
 
@@ -1954,10 +2075,39 @@ function mapImage(item) {
     return new _entities_image__WEBPACK_IMPORTED_MODULE_1__["Image"](item.fields.content.sys.id, item.fields.name);
 }
 function mapNavigationMenuItem(item) {
-    return new _entities_navigation_menu_item__WEBPACK_IMPORTED_MODULE_2__["NavigationMenuItem"](item.fields.element_name, item.fields.order, item.fields.link_value);
+    return new _entities_navigation_menu_item__WEBPACK_IMPORTED_MODULE_2__["NavigationMenuItem"](item.fields.element_name, item.fields.order, item.fields.link_value, item.fields.visible);
 }
 function mapContact(item) {
     return new _entities_contact__WEBPACK_IMPORTED_MODULE_3__["Contact"](item.fields.contact_name, item.fields.contact_values, item.fields.contact_person, item.fields.is_phone, item.fields.order_field);
+}
+function mapFooterContent(item) {
+    return new _entities_footer_content__WEBPACK_IMPORTED_MODULE_4__["FooterContent"](item.fields.left_side, item.fields.right_side);
+}
+function mapMotto(item) {
+    return new _entities_motto__WEBPACK_IMPORTED_MODULE_5__["Motto"](item.fields.accented_caption, item.fields.description, item.fields.callback_caption);
+}
+function mapActivity(item) {
+    return new _entities_activity__WEBPACK_IMPORTED_MODULE_6__["Activity"](item.fields.name, [
+        item.fields.number1,
+        item.fields.number2,
+        item.fields.number3,
+        item.fields.number4,
+        item.fields.number5,
+        item.fields.number6,
+        item.fields.number7,
+        item.fields.number8,
+        item.fields.number9,
+        item.fields.number10
+    ]);
+}
+function mapRequisites(item) {
+    return new _entities_requisites__WEBPACK_IMPORTED_MODULE_7__["Requisites"](item.fields.subtitle, [
+        item.fields.line1,
+        item.fields.line2,
+        item.fields.line3,
+        item.fields.line4,
+        item.fields.line5
+    ]);
 }
 
 
@@ -2091,7 +2241,8 @@ var ContentfulServiceLower = /** @class */ (function () {
         }
         return this.client.getEntry(entryId)
             .then(function (response) { return mappingFunction(response); })
-            .catch(function () {
+            .catch(function (e) {
+            console.log(e);
             throw new Error("Problem with rertieving entry " + entryId);
         });
     };
@@ -2548,7 +2699,7 @@ var ContactsModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_0__["CommonModule"],
-                _common_shared_module__WEBPACK_IMPORTED_MODULE_2__["SharedModule"].forRoot(),
+                _common_shared_module__WEBPACK_IMPORTED_MODULE_2__["SharedModule"],
                 _asymmetrik_ngx_leaflet__WEBPACK_IMPORTED_MODULE_7__["LeafletModule"],
                 _contacts_routing__WEBPACK_IMPORTED_MODULE_4__["routing"]
             ],
@@ -2675,7 +2826,7 @@ var MapComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"left-aligned unorder\">\r\n        <span class=\"h\">Реквизиты предприятия:</span>\r\n        <ul>\r\n                <li>П/Р № 2600800006694 в ХФ ПАТ «Укрсоцбанк» г. Харькова</li>    \r\n                <li>МФО 300023</li>\r\n                <li>Код 21265323</li>\r\n        </ul>\r\n</div>"
+module.exports = "<div class=\"left-aligned unorder\">\r\n        <span class=\"h\">{{requisites.subtitle}}:</span>\r\n        <ul>\r\n                <li *ngFor=\"let item of requisites.lines\">{{item}}</li>\r\n        </ul>\r\n</div>"
 
 /***/ }),
 
@@ -2701,22 +2852,38 @@ module.exports = ".h {\n  font-size: large;\n  font-weight: 900; }\n\nli {\n  li
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RequisitesComponent", function() { return RequisitesComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _common_services_contentful_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../common/services/contentful-service */ "./src/common/services/contentful-service.ts");
+/* harmony import */ var _common_entities_requisites__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../common/entities/requisites */ "./src/common/entities/requisites.ts");
+/* harmony import */ var _common_mappingLayer_mapper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../common/mappingLayer/mapper */ "./src/common/mappingLayer/mapper.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
 
 var RequisitesComponent = /** @class */ (function () {
-    function RequisitesComponent() {
+    function RequisitesComponent(contentfulService) {
+        this.contentfulService = contentfulService;
+        this.requisites = new _common_entities_requisites__WEBPACK_IMPORTED_MODULE_2__["Requisites"]('', null);
     }
+    RequisitesComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.contentfulService.ofContentType(_common_entities_requisites__WEBPACK_IMPORTED_MODULE_2__["Requisites"].CONTENT_TYPE_ID, '', _common_mappingLayer_mapper__WEBPACK_IMPORTED_MODULE_3__["mapRequisites"]).subscribe(function (items) { return _this.requisites = items[0]; });
+    };
     RequisitesComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'requisites',
             template: __webpack_require__(/*! ./requisites.component.html */ "./src/contacts/requisites/requisites.component.html"),
             styles: [__webpack_require__(/*! ./requisites.component.scss */ "./src/contacts/requisites/requisites.component.scss")]
-        })
+        }),
+        __metadata("design:paramtypes", [_common_services_contentful_service__WEBPACK_IMPORTED_MODULE_1__["ContentfulService"]])
     ], RequisitesComponent);
     return RequisitesComponent;
 }());

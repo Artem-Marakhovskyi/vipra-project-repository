@@ -5,7 +5,8 @@ export class NavigationMenuItem {
     constructor(    
         public name : string,
         public order : number,
-        public link : string
+        public link : string,
+        public visible : boolean
     ) {
     }
 

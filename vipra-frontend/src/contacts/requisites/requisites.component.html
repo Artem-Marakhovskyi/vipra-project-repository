@@ -1,8 +1,6 @@
 <div class="left-aligned unorder">
-        <span class="h">Реквизиты предприятия:</span>
+        <span class="h">{{requisites.subtitle}}:</span>
         <ul>
-                <li>П/Р № 2600800006694 в ХФ ПАТ «Укрсоцбанк» г. Харькова</li>    
-                <li>МФО 300023</li>
-                <li>Код 21265323</li>
+                <li *ngFor="let item of requisites.lines">{{item}}</li>
         </ul>
 </div>

@@ -74,8 +74,9 @@ export class ContentfulServiceLower {
         return this.client.getEntry(entryId)
             .then((response) => mappingFunction(response))
             .catch(
-                () => 
+                (e) => 
                 {
+                    console.log(e);
                     throw new Error(`Problem with rertieving entry ${entryId}`);
                 });        
     }

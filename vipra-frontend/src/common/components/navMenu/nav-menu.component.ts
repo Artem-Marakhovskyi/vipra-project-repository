@@ -19,6 +19,6 @@ export class NavMenuComponent implements OnInit {
 
     ngOnInit(): void {
         this.navigationMenuService.getNavigationMenuItems()
-          .subscribe(result => this.items = result);
+          .subscribe(result => this.items = result.filter(e => e.visible));
     }
 }
