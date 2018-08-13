@@ -6,8 +6,7 @@ import { ContactsComponent } from '../contacts/contacts.component';
 const routes: Routes = [
     { path: 'home', loadChildren: '../home/home.module#HomeModule' },
     { path: 'contacts',  loadChildren: '../contacts/contacts.module#ContactsModule' },
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: '**', redirectTo: '/heroes', pathMatch: 'full' }
+    { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
 @NgModule({
