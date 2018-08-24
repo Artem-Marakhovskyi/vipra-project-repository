@@ -4,7 +4,8 @@ export class Activity {
 
     constructor(
         public name : string,
-        public list : string[]
+        public list : string[],
+        public icon_name : string
     ) {
         this.list = this.list.filter(e => e);
     }

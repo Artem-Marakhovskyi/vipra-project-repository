@@ -69,7 +69,8 @@ export function mapActivity(item : any) : Activity {
             item.fields.number8,
             item.fields.number9,
             item.fields.number10
-        ]
+        ],
+        item.fields.icon_name
     )
 }
 

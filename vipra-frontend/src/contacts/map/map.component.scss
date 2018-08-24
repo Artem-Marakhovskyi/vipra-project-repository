@@ -7,6 +7,10 @@ $height : 400px;
     margin: 10px auto;
 }
 
+.bottom {
+    vertical-align: bottom;
+}
+
 :host {
     text-align: center;
 }
@@ -16,6 +20,9 @@ $height : 400px;
     font-weight: 900;
 }
 
+.icon-bg {
+    font-size: 30px;
+}
 span.large {
     margin-left: 20px;
 }

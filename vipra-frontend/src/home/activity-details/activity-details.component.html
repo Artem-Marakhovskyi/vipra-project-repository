@@ -6,7 +6,9 @@
             <div class="pure-u-6-24"></div>
             <div class="pure-u-12-24">
                 <div class="activity-content">
-                    <img class="centered-img" src="/assets/u59.png">
+                    <div *ngIf="activity.icon_name" class="centered">
+                        <i class="material-icons icon_big">{{activity.icon_name}}</i>
+                    </div>
                     <p class="centered sub-h">{{activity.name}}</p>
                     <ul>
                         <li *ngFor="let item of activity.list">{{item}}</li> 
