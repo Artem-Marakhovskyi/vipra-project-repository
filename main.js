@@ -1432,9 +1432,10 @@ var AboutCompany = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Activity", function() { return Activity; });
 var Activity = /** @class */ (function () {
-    function Activity(name, list) {
+    function Activity(name, list, icon_name) {
         this.name = name;
         this.list = list;
+        this.icon_name = icon_name;
         this.list = this.list.filter(function (e) { return e; });
     }
     Activity.CONTENT_TYPE_ID = 'activity';
@@ -2098,7 +2099,7 @@ function mapActivity(item) {
         item.fields.number8,
         item.fields.number9,
         item.fields.number10
-    ]);
+    ], item.fields.icon_name);
 }
 function mapRequisites(item) {
     return new _entities_requisites__WEBPACK_IMPORTED_MODULE_7__["Requisites"](item.fields.subtitle, [
@@ -2516,7 +2517,7 @@ var ContactComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"text-centered\">\r\n        <img src=\"/assets/u346.png\">\r\n        <div *ngFor=\"let contact of phoneContacts\">\r\n                <contact [content]=\"contact\"></contact>\r\n        </div>\r\n\r\n        <img class=\"margin-top\" src=\"/assets/u347.png\">\r\n        <div *ngFor=\"let contact of nonPhoneContacts\">\r\n                <contact [content]=\"contact\"></contact>\r\n        </div>\r\n</div>"
+module.exports = "<div class=\"text-centered\">\r\n        <i class=\"material-icons icon-big\">phone</i>\r\n        <div *ngFor=\"let contact of phoneContacts\">\r\n                <contact [content]=\"contact\"></contact>\r\n        </div>\r\n\r\n        <i class=\"material-icons icon-big\">mail_outline</i>\r\n        <div *ngFor=\"let contact of nonPhoneContacts\">\r\n                <contact [content]=\"contact\"></contact>\r\n        </div>\r\n</div>"
 
 /***/ }),
 
@@ -2527,7 +2528,7 @@ module.exports = "<div class=\"text-centered\">\r\n        <img src=\"/assets/u3
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".text-centered {\n  text-align: center; }\n\n.margin-top {\n  margin-top: 10px; }\n"
+module.exports = ".text-centered {\n  text-align: center; }\n\n.icon-big {\n  font-size: 30px; }\n\n.margin-top {\n  margin-top: 10px; }\n"
 
 /***/ }),
 
@@ -2752,7 +2753,7 @@ var routing = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forCh
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n\r\n        <div>\r\n                <img src=\"/assets/u350.png\"/> \r\n                <span class=\"large\">Мы на карте</span>\r\n        </div>\r\n\r\n        <div id=\"map-container\"\r\n                leaflet \r\n                [leafletOptions]=\"options\">\r\n        </div>\r\n</div>"
+module.exports = "<div>\r\n\r\n        <div>\r\n                <span class=\"large\"><i class=\"material-icons bottom icon-bg\">pin_drop</i> Мы на карте</span>\r\n        </div>\r\n\r\n        <div id=\"map-container\"\r\n                leaflet \r\n                [leafletOptions]=\"options\">\r\n        </div>\r\n</div>"
 
 /***/ }),
 
@@ -2763,7 +2764,7 @@ module.exports = "<div>\r\n\r\n        <div>\r\n                <img src=\"/asse
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#map-container {\n  height: 400px;\n  width: 500px;\n  margin: 10px auto; }\n\n:host {\n  text-align: center; }\n\n.large {\n  font-size: x-large;\n  font-weight: 900; }\n\nspan.large {\n  margin-left: 20px; }\n\n.left-aligned {\n  text-align: left; }\n"
+module.exports = "#map-container {\n  height: 400px;\n  width: 500px;\n  margin: 10px auto; }\n\n.bottom {\n  vertical-align: bottom; }\n\n:host {\n  text-align: center; }\n\n.large {\n  font-size: x-large;\n  font-weight: 900; }\n\n.icon-bg {\n  font-size: 30px; }\n\nspan.large {\n  margin-left: 20px; }\n\n.left-aligned {\n  text-align: left; }\n"
 
 /***/ }),
 

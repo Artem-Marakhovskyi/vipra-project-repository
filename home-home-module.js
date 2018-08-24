@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"info-block full-width\">\r\n    <p class=\"centered bold padded margined h\">Деятельность</p>\r\n    <div class=\"pure-g\">\r\n\r\n        <div class=\"pure-u-12-24\" *ngFor=\"let activity of activities\">\r\n            <div class=\"pure-u-6-24\"></div>\r\n            <div class=\"pure-u-12-24\">\r\n                <div class=\"activity-content\">\r\n                    <img class=\"centered-img\" src=\"/assets/u59.png\">\r\n                    <p class=\"centered sub-h\">{{activity.name}}</p>\r\n                    <ul>\r\n                        <li *ngFor=\"let item of activity.list\">{{item}}</li> \r\n                    </ul>\r\n                </div>\r\n            </div>\r\n            <div class=\"pure-u-6-24\"></div>\r\n        </div>\r\n        \r\n\r\n        <!-- <div class=\"pure-u-4-24\"></div>\r\n\r\n\r\n        <div class=\"pure-u-6-24\">\r\n            <img class=\"centered-img\" src=\"/assets/u59.png\">\r\n            <p class=\"centered sub-h\">Обслуживание АЗС и нефтебаз</p>\r\n            <ul>\r\n                <li>Проведение работ повышенной опасности</li> \r\n                <li>Изготовление технологического оборудование</li> \r\n                <li>Проведение электротехнического измерения</li> \r\n                <li>Подбор земельных участков для строительства АЗС и нефтебаз</li> \r\n             </ul>\r\n        </div> -->\r\n\r\n        <!-- <div class=\"pure-u-4-24\"></div> -->\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"info-block full-width\">\r\n    <p class=\"centered bold padded margined h\">Деятельность</p>\r\n    <div class=\"pure-g\">\r\n\r\n        <div class=\"pure-u-12-24\" *ngFor=\"let activity of activities\">\r\n            <div class=\"pure-u-6-24\"></div>\r\n            <div class=\"pure-u-12-24\">\r\n                <div class=\"activity-content\">\r\n                    <div *ngIf=\"activity.icon_name\" class=\"centered\">\r\n                        <i class=\"material-icons icon_big\">{{activity.icon_name}}</i>\r\n                    </div>\r\n                    <p class=\"centered sub-h\">{{activity.name}}</p>\r\n                    <ul>\r\n                        <li *ngFor=\"let item of activity.list\">{{item}}</li> \r\n                    </ul>\r\n                </div>\r\n            </div>\r\n            <div class=\"pure-u-6-24\"></div>\r\n        </div>\r\n        \r\n\r\n        <!-- <div class=\"pure-u-4-24\"></div>\r\n\r\n\r\n        <div class=\"pure-u-6-24\">\r\n            <img class=\"centered-img\" src=\"/assets/u59.png\">\r\n            <p class=\"centered sub-h\">Обслуживание АЗС и нефтебаз</p>\r\n            <ul>\r\n                <li>Проведение работ повышенной опасности</li> \r\n                <li>Изготовление технологического оборудование</li> \r\n                <li>Проведение электротехнического измерения</li> \r\n                <li>Подбор земельных участков для строительства АЗС и нефтебаз</li> \r\n             </ul>\r\n        </div> -->\r\n\r\n        <!-- <div class=\"pure-u-4-24\"></div> -->\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -18,7 +18,7 @@ module.exports = "<div class=\"info-block full-width\">\r\n    <p class=\"center
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".centered-img {\n  display: block;\n  margin: 0 auto; }\n\n.margined {\n  margin-bottom: 40px; }\n\n.fullwidth {\n  width: 100%; }\n\n.activity-content {\n  margin: 0 auto;\n  max-width: 350px; }\n\n.info-block {\n  background-color: #052d6e;\n  padding: 20px; }\n\n.centered {\n  text-align: center; }\n\n.sub-h {\n  font-size: 1.5em; }\n\n.h {\n  font-size: 2em; }\n\n.bold {\n  font-weight: 900; }\n\nul {\n  list-style-type: disc; }\n\nli {\n  padding: 15px 0px 0px 5px; }\n"
+module.exports = ".centered-img {\n  display: block;\n  margin: 0 auto; }\n\n.margined {\n  margin-bottom: 40px; }\n\n.fullwidth {\n  width: 100%; }\n\n.icon_big {\n  font-size: 45px; }\n\n.activity-content {\n  margin: 0 auto;\n  max-width: 350px; }\n\n.info-block {\n  background-color: #052d6e;\n  padding: 20px; }\n\n.centered {\n  text-align: center; }\n\n.sub-h {\n  font-size: 1.5em; }\n\n.h {\n  font-size: 2em; }\n\n.bold {\n  font-weight: 900; }\n\nul {\n  list-style-type: disc; }\n\nli {\n  padding: 15px 0px 0px 5px; }\n"
 
 /***/ }),
 
@@ -227,7 +227,7 @@ var routing = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forCh
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<img [src]=\"backgroundUrl\"/>\r\n\r\n<div class=\"pure-g\">\r\n    <div class=\"pure-u-5-24\"></div>\r\n    <div class=\"motto-container\">\r\n        <h1 class=\"motto-lg\">\r\n            {{motto.accentedText}}\r\n        </h1>\r\n\r\n        <h2 class=\"motto-sm rest-width\">\r\n            {{motto.additionalText}}\r\n        </h2>\r\n        \r\n        <div class=\"button-container\">\r\n                <!-- <custom-button [txt]=\"knowMore\"></custom-button> -->\r\n                <custom-button [txt]=\"motto.callbackText\" (click)=\"call()\"></custom-button>\r\n        </div>\r\n</div>\r\n"
+module.exports = "<img [src]=\"backgroundUrl\"/>\r\n\r\n<div class=\"pure-g\">\r\n    <div class=\"pure-u-5-24\"></div>\r\n    <div class=\"motto-container\">\r\n        <h1 class=\"motto-lg shadowed\">\r\n            {{motto.accentedText}}\r\n        </h1>\r\n        <h2 class=\"motto-sm rest-width shadowed\">\r\n            {{motto.additionalText}}\r\n        </h2>\r\n        \r\n        <div class=\"button-container\">\r\n                <!-- <custom-button [txt]=\"knowMore\"></custom-button> -->\r\n                <custom-button [txt]=\"motto.callbackText\" (click)=\"call()\"></custom-button>\r\n        </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -238,7 +238,7 @@ module.exports = "<img [src]=\"backgroundUrl\"/>\r\n\r\n<div class=\"pure-g\">\r
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "img {\n  width: 100%;\n  top: 0px;\n  position: absolute;\n  height: 600px;\n  z-index: -1;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.motto-container {\n  padding: 10px;\n  position: relative;\n  top: 180px; }\n\n.motto-container * {\n    letter-spacing: .01em; }\n\n.motto-container .motto-lg {\n    margin-bottom: 50px; }\n\n.motto-container .motto-sm {\n    width: 500px; }\n\n.button-container {\n  margin-top: 40px; }\n\ncustom-button {\n  margin-right: 40px; }\n\ndiv.pure-g {\n  height: 600px; }\n"
+module.exports = "img {\n  width: 100%;\n  top: 0px;\n  position: absolute;\n  height: 600px;\n  z-index: -1;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.shadowed {\n  text-shadow: 0px 0px 50px #000000; }\n\n.motto-container {\n  padding: 10px;\n  position: relative;\n  top: 180px; }\n\n.motto-container * {\n    letter-spacing: .01em; }\n\n.motto-container .motto-lg {\n    margin-bottom: 50px; }\n\n.motto-container .motto-sm {\n    width: 500px; }\n\n.button-container {\n  margin-top: 40px; }\n\ncustom-button {\n  margin-right: 40px; }\n\ndiv.pure-g {\n  height: 600px; }\n"
 
 /***/ }),
 
