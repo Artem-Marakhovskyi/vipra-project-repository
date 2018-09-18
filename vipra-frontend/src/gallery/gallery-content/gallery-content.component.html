@@ -1,0 +1,9 @@
+<div class="pure-g">
+
+    <div *ngFor="let elem of content">
+        <div class="pure-u-1-3">
+            <img [src]="elem.imageUrl" width="400px" />
+            <p>{{elem.content}}</p>
+        </div>
+    </div>
+</div>

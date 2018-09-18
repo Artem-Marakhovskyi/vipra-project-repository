@@ -6,6 +6,7 @@ import { FooterContent } from "../entities/footer-content";
 import { Motto } from "../entities/motto";
 import { Activity } from "../entities/activity";
 import { Requisites } from "../entities/requisites";
+import { GalleryImage } from "../entities/gallery-image";
 
 export function mapAboutCompany(item : any) : AboutCompany {
     return new AboutCompany(
@@ -85,4 +86,12 @@ export function mapRequisites(item : any) {
             item.fields.line5
         ]
     )
+}
+
+export function mapGalleryImage(item : any) {
+    console.log(item);
+    return new GalleryImage(
+        item.fields.image.sys.id,
+        item.fields.content
+    );
 }
