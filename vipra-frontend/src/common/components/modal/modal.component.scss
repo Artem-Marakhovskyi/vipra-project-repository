@@ -11,13 +11,13 @@
     .app-modal {
       background: white;
       border-radius: 3px;
-      left: calc(50% - 250px);
+      left: calc(50% - 400px);
       padding: 0;
       max-height: 600px;
       overflow-y: auto;
       position: fixed;
       top: 50px;
-      width: 500px;
+      width: 800px;
       z-index: 1101;
       .title {
         margin-top:15px;

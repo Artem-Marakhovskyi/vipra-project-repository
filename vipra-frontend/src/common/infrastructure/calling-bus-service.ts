@@ -5,6 +5,7 @@ import { BusService } from "./bus-service";
 export class CallingBusService {
 
     public static FORM = 'form';
+    public static SHOW_PHOTO_FORM = 'show-photo-form';
 
     constructor(
         private busService : BusService
@@ -15,4 +16,8 @@ export class CallingBusService {
     public callForm() {
         this.busService.call(CallingBusService.FORM);
     }
+
+    public callPhotoForm(context : object) {
+        this.busService.call(CallingBusService.SHOW_PHOTO_FORM, context);
+    }    
 }

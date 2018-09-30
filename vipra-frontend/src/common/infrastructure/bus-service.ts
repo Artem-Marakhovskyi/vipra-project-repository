@@ -6,11 +6,11 @@ export class BusService {
 
     private entryStorage : Array<BusEntry> = [];
 
-    public call(id : string) {
+    public call(id : string, ctx? : object) {
         console.log(this.entryStorage.length);
         let entry = this.findEntry(id);
         if (entry !== null) {
-            entry.emitter.next(entry.pingable);
+            entry.emitter.next({pingable: entry.pingable, context : ctx});
         }
     }
 
@@ -50,6 +50,11 @@ export class BusService {
 
 export interface BusEntry {
     id : string;
-    emitter : EventEmitter<any>;
+    emitter : EventEmitter<PingContext>;
     pingable : Pingable;
+}
+
+export interface PingContext {
+    pingable : Pingable;
+    context : any;
 }

@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { BusService } from '../../common/infrastructure/bus-service';
+import { BusService, PingContext } from '../../common/infrastructure/bus-service';
 import { Pingable } from '../../common/infrastructure/pingable';
 import { CallingBusService } from '../../common/infrastructure/calling-bus-service';
 import { ModalService } from '../../common/infrastructure/modal-service';
@@ -47,8 +47,8 @@ export class CallUsFormComponent implements Pingable, OnInit{
         this.subscribeToValueChanges();
     }
 
-    public ping(caller : Pingable) {
-        (<CallUsFormComponent>caller).modalService.open(CallUsFormComponent.FORM_ID);
+    public ping(ctx : PingContext) {
+        (<CallUsFormComponent>ctx.pingable).modalService.open(CallUsFormComponent.FORM_ID);
     }
 
     public post() {

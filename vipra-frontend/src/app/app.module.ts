@@ -9,11 +9,13 @@ import { ContactsModule } from '../contacts/contacts.module';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CallUsFormComponent } from './call-us-form/call-us-form.component';
+import { ShowPhotoFormComponent } from './show-photo-form/show-photo-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CallUsFormComponent
+    CallUsFormComponent,
+    ShowPhotoFormComponent
   ],
   imports: [
     BrowserModule,

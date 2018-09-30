@@ -20,6 +20,8 @@ export class ModalComponent implements OnInit {
   @Input() modalId: string;
   @Input() modalTitle: string;
   @Input() blocking: boolean;
+  @Input() innerWidth : number;
+
   @HostListener('document:keyup', ['$event'])
   /**
   * keyup - Checks keys entered for the 'esc' key, attached to hostlistener

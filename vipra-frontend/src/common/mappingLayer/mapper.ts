@@ -7,6 +7,7 @@ import { Motto } from "../entities/motto";
 import { Activity } from "../entities/activity";
 import { Requisites } from "../entities/requisites";
 import { GalleryImage } from "../entities/gallery-image";
+import { GalleryHeader } from "../entities/gallery-header";
 
 export function mapAboutCompany(item : any) : AboutCompany {
     return new AboutCompany(
@@ -89,9 +90,14 @@ export function mapRequisites(item : any) {
 }
 
 export function mapGalleryImage(item : any) {
-    console.log(item);
     return new GalleryImage(
         item.fields.image.sys.id,
+        item.fields.content
+    );
+}
+
+export function mapGalleryHeader(item : any) {
+    return new GalleryHeader(
         item.fields.content
     );
 }

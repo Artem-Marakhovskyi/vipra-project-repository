@@ -1,3 +1,5 @@
+import { PingContext } from "./bus-service";
+
 export interface Pingable {
-    ping(obj : Pingable);
+    ping(obj : PingContext);
 }

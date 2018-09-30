@@ -3,6 +3,7 @@ import { GalleryImage } from '../../common/entities/gallery-image';
 import { GalleryContentService } from '../services/gallery-content.service';
 import { ImageService } from '../../common/entityServices/image-service';
 import { ContentfulService } from '../../common/services/contentful-service';
+import { CallingBusService } from '../../common/infrastructure/calling-bus-service';
 
 @Component({
   selector: 'gallery-content',
@@ -16,7 +17,8 @@ export class GalleryContentComponent {
 
   constructor(
     private galleryContentService : GalleryContentService,
-    private contentfulService : ContentfulService
+    private contentfulService : ContentfulService,
+    private callingBusService : CallingBusService
   ) {
   }
 
@@ -30,5 +32,9 @@ export class GalleryContentComponent {
           .subscribe(res => el.imageUrl = res);
       });
     });
+  }
+
+  public cellClick(elem : GalleryImage){
+    this.callingBusService.callPhotoForm(elem);
   }
 }

@@ -1,6 +1,6 @@
 <div class="modal-container" *ngIf="isOpen">
     <div class="modal-overlay" (click)="close(true)"></div>
-      <div class="app-modal">
+      <div class="app-modal" [style.width]="innerWidth">
       <div class="title">
       <h3 *ngIf="modalTitle" [innerHTML]="modalTitle"></h3>
       <button *ngIf="closebtn"
