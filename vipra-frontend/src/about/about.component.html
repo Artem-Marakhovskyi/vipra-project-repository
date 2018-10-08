@@ -1,0 +1,19 @@
+
+<div class="container">
+    <h2>{{about?.header}}</h2>
+    <div class="pure-g">
+        <div class="pure-u-1-5"></div>
+        <div  class="pure-u-3-5">
+            <div *ngFor="let p of about?.contentArr">
+                <p class="par">{{p.content}}</p>
+                <div *ngFor="let imgSrc of p.imgSources" class="img-container">
+                    <img [src]="imgSrc"/>
+                </div>
+            </div>
+        </div>
+        <div class="pure-u-1-5"></div>
+    </div>
+    <div class="centered lower-btn">
+            <custom-button txt="Связаться с нами"  (click)="callUs()"></custom-button>
+    </div>
+</div>

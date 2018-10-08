@@ -11,8 +11,8 @@ import { GalleryHeader } from "../entities/gallery-header";
 
 export function mapAboutCompany(item : any) : AboutCompany {
     return new AboutCompany(
-        item.fields.title,
-        item.fields.about
+        item.fields.header,
+        item.fields.content
     );
 }
 
