@@ -540,8 +540,16 @@ module.exports = function (css) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"../about/about.module": [
+		"./src/about/about.module.ts",
+		"about-about-module"
+	],
 	"../contacts/contacts.module": [
 		"./src/contacts/contacts.module.ts"
+	],
+	"../gallery/gallery.module": [
+		"./src/gallery/gallery.module.ts",
+		"gallery-gallery-module"
 	],
 	"../home/home.module": [
 		"./src/home/home.module.ts",
@@ -577,7 +585,7 @@ module.exports = webpackAsyncContext;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<call-us-form></call-us-form>\r\n<app-header class=\"pure-g\" lightBackground></app-header>\r\n<router-outlet></router-outlet>\r\n<app-footer></app-footer>"
+module.exports = "<show-photo-form></show-photo-form>\r\n<call-us-form></call-us-form>\r\n<app-header class=\"pure-g\" lightBackground></app-header>\r\n<router-outlet></router-outlet>\r\n<app-footer></app-footer>"
 
 /***/ }),
 
@@ -646,12 +654,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _asymmetrik_ngx_leaflet__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @asymmetrik/ngx-leaflet */ "./node_modules/@asymmetrik/ngx-leaflet/dist/index.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _call_us_form_call_us_form_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./call-us-form/call-us-form.component */ "./src/app/call-us-form/call-us-form.component.ts");
+/* harmony import */ var _show_photo_form_show_photo_form_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./show-photo-form/show-photo-form.component */ "./src/app/show-photo-form/show-photo-form.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -668,7 +678,8 @@ var AppModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"],
-                _call_us_form_call_us_form_component__WEBPACK_IMPORTED_MODULE_8__["CallUsFormComponent"]
+                _call_us_form_call_us_form_component__WEBPACK_IMPORTED_MODULE_8__["CallUsFormComponent"],
+                _show_photo_form_show_photo_form_component__WEBPACK_IMPORTED_MODULE_9__["ShowPhotoFormComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -712,6 +723,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var routes = [
     { path: 'home', loadChildren: '../home/home.module#HomeModule' },
     { path: 'contacts', loadChildren: '../contacts/contacts.module#ContactsModule' },
+    { path: 'gallery', loadChildren: '../gallery/gallery.module#GalleryModule' },
+    { path: 'about', loadChildren: '../about/about.module#AboutModule' },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
@@ -800,8 +813,8 @@ var CallUsFormComponent = /** @class */ (function () {
         this.createFormGroup(this.fb);
         this.subscribeToValueChanges();
     };
-    CallUsFormComponent.prototype.ping = function (caller) {
-        caller.modalService.open(CallUsFormComponent_1.FORM_ID);
+    CallUsFormComponent.prototype.ping = function (ctx) {
+        ctx.pingable.modalService.open(CallUsFormComponent_1.FORM_ID);
     };
     CallUsFormComponent.prototype.post = function () {
         var _this = this;
@@ -879,6 +892,89 @@ var CallUsFormComponent = /** @class */ (function () {
     ], CallUsFormComponent);
     return CallUsFormComponent;
     var CallUsFormComponent_1;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/show-photo-form/show-photo-form.component.html":
+/*!****************************************************************!*\
+  !*** ./src/app/show-photo-form/show-photo-form.component.html ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<app-modal modalId=\"showPhotoFormId\" blocking=\"false\" closebtn=\"true\" [innerWidth]=\"outerWidth\" class=\"pure-form pure-form-stacked\">\r\n        <div class=\"content\">\r\n                <div class=\"centerize\">\r\n                        <img [src]=\"imageUrl\" width=\"600px\"/>\r\n                </div>\r\n                <p>{{content}}</p>\r\n        </div>   \r\n</app-modal>"
+
+/***/ }),
+
+/***/ "./src/app/show-photo-form/show-photo-form.component.scss":
+/*!****************************************************************!*\
+  !*** ./src/app/show-photo-form/show-photo-form.component.scss ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "app-modal * {\n  color: #4a4a4a; }\n\n.content {\n  padding: 20px; }\n\n.centerize {\n  text-align: center; }\n"
+
+/***/ }),
+
+/***/ "./src/app/show-photo-form/show-photo-form.component.ts":
+/*!**************************************************************!*\
+  !*** ./src/app/show-photo-form/show-photo-form.component.ts ***!
+  \**************************************************************/
+/*! exports provided: ShowPhotoFormComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ShowPhotoFormComponent", function() { return ShowPhotoFormComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _common_infrastructure_bus_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../common/infrastructure/bus-service */ "./src/common/infrastructure/bus-service.ts");
+/* harmony import */ var _common_infrastructure_calling_bus_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../common/infrastructure/calling-bus-service */ "./src/common/infrastructure/calling-bus-service.ts");
+/* harmony import */ var _common_infrastructure_modal_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../common/infrastructure/modal-service */ "./src/common/infrastructure/modal-service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var ShowPhotoFormComponent = /** @class */ (function () {
+    function ShowPhotoFormComponent(busService, modalService) {
+        this.busService = busService;
+        this.modalService = modalService;
+        this.outerWidth = "800px";
+        this.busService.register(this, _common_infrastructure_calling_bus_service__WEBPACK_IMPORTED_MODULE_2__["CallingBusService"].SHOW_PHOTO_FORM);
+    }
+    ShowPhotoFormComponent_1 = ShowPhotoFormComponent;
+    ShowPhotoFormComponent.prototype.ngOnInit = function () {
+    };
+    ShowPhotoFormComponent.prototype.ping = function (ctx) {
+        var me = ctx.pingable;
+        me.imageUrl = ctx.context.imageUrl;
+        me.content = ctx.context.content;
+        ctx.pingable.modalService.open(ShowPhotoFormComponent_1.FORM_ID);
+    };
+    ShowPhotoFormComponent.FORM_ID = 'showPhotoFormId';
+    ShowPhotoFormComponent = ShowPhotoFormComponent_1 = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'show-photo-form',
+            template: __webpack_require__(/*! ./show-photo-form.component.html */ "./src/app/show-photo-form/show-photo-form.component.html"),
+            styles: [__webpack_require__(/*! ./show-photo-form.component.scss */ "./src/app/show-photo-form/show-photo-form.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_common_infrastructure_bus_service__WEBPACK_IMPORTED_MODULE_1__["BusService"],
+            _common_infrastructure_modal_service__WEBPACK_IMPORTED_MODULE_3__["ModalService"]])
+    ], ShowPhotoFormComponent);
+    return ShowPhotoFormComponent;
+    var ShowPhotoFormComponent_1;
 }());
 
 
@@ -1179,7 +1275,7 @@ var LogoComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal-container\" *ngIf=\"isOpen\">\r\n    <div class=\"modal-overlay\" (click)=\"close(true)\"></div>\r\n      <div class=\"app-modal\">\r\n      <div class=\"title\">\r\n      <h3 *ngIf=\"modalTitle\" [innerHTML]=\"modalTitle\"></h3>\r\n      <button *ngIf=\"closebtn\"\r\n          class=\"btn-close\" (click)=\"close()\">Закрыть</button>\r\n    </div>\r\n    <div class=\"body\">\r\n      <ng-content></ng-content>\r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"modal-container\" *ngIf=\"isOpen\">\r\n    <div class=\"modal-overlay\" (click)=\"close(true)\"></div>\r\n      <div class=\"app-modal\" [style.width]=\"innerWidth\">\r\n      <div class=\"title\">\r\n      <h3 *ngIf=\"modalTitle\" [innerHTML]=\"modalTitle\"></h3>\r\n      <button *ngIf=\"closebtn\"\r\n          class=\"btn-close\" (click)=\"close()\">Закрыть</button>\r\n    </div>\r\n    <div class=\"body\">\r\n      <ng-content></ng-content>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -1190,7 +1286,7 @@ module.exports = "<div class=\"modal-container\" *ngIf=\"isOpen\">\r\n    <div c
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".modal-container .modal-overlay {\n  background: rgba(169, 169, 169, 0.65);\n  bottom: 0;\n  left: 0;\n  position: fixed;\n  right: 0;\n  top: 0;\n  z-index: 1100; }\n\n.modal-container .app-modal {\n  background: white;\n  border-radius: 3px;\n  left: calc(50% - 250px);\n  padding: 0;\n  max-height: 600px;\n  overflow-y: auto;\n  position: fixed;\n  top: 50px;\n  width: 500px;\n  z-index: 1101; }\n\n.modal-container .app-modal .title {\n    margin-top: 15px;\n    height: 30px;\n    text-align: center; }\n\n.modal-container .app-modal .title h3 {\n      color: #4a4a4a;\n      display: inline-block;\n      padding: 5px;\n      margin-top: 0 !important; }\n\n.modal-container .app-modal .title .btn-close {\n      background: white;\n      color: #4a4a4a;\n      border: 0;\n      border-radius: 50%;\n      position: absolute;\n      right: 0;\n      float: right;\n      height: 25px;\n      margin-right: 20px;\n      font-size: small; }\n\n.modal-container .app-modal .title .btn-close:hover {\n      background: #f0f0f0;\n      border: 1px #cccccc;\n      border-radius: 5%;\n      float: right;\n      height: 25px; }\n"
+module.exports = ".modal-container .modal-overlay {\n  background: rgba(169, 169, 169, 0.65);\n  bottom: 0;\n  left: 0;\n  position: fixed;\n  right: 0;\n  top: 0;\n  z-index: 1100; }\n\n.modal-container .app-modal {\n  background: white;\n  border-radius: 3px;\n  left: calc(50% - 400px);\n  padding: 0;\n  max-height: 600px;\n  overflow-y: auto;\n  position: fixed;\n  top: 50px;\n  width: 800px;\n  z-index: 1101; }\n\n.modal-container .app-modal .title {\n    margin-top: 15px;\n    height: 30px;\n    text-align: center; }\n\n.modal-container .app-modal .title h3 {\n      color: #4a4a4a;\n      display: inline-block;\n      padding: 5px;\n      margin-top: 0 !important; }\n\n.modal-container .app-modal .title .btn-close {\n      background: white;\n      color: #4a4a4a;\n      border: 0;\n      border-radius: 50%;\n      position: absolute;\n      right: 0;\n      float: right;\n      height: 25px;\n      margin-right: 20px;\n      font-size: small; }\n\n.modal-container .app-modal .title .btn-close:hover {\n      background: #f0f0f0;\n      border: 1px #cccccc;\n      border-radius: 5%;\n      float: right;\n      height: 25px; }\n"
 
 /***/ }),
 
@@ -1263,6 +1359,10 @@ var ModalComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Boolean)
     ], ModalComponent.prototype, "blocking", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Number)
+    ], ModalComponent.prototype, "innerWidth", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"])('document:keyup', ['$event'])
         /**
@@ -1402,19 +1502,57 @@ var LightBackgroundDirective = /** @class */ (function () {
 /*!**********************************************!*\
   !*** ./src/common/entities/about-company.ts ***!
   \**********************************************/
-/*! exports provided: AboutCompany */
+/*! exports provided: AboutCompany, AboutCompanyContent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AboutCompany", function() { return AboutCompany; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AboutCompanyContent", function() { return AboutCompanyContent; });
 var AboutCompany = /** @class */ (function () {
-    function AboutCompany(title, about) {
-        this.title = title;
-        this.about = about;
+    function AboutCompany(header, content) {
+        this.header = header;
+        this.content = content;
+        this.contentArr = new Array();
+        this.content = this.content.replace(/\!\[.*\]\(/g, '<link>(');
+        var prevIdx = 0;
+        for (var i = 0; i < this.content.length; i++) {
+            if (this.content.charCodeAt(i) === 10) {
+                this.contentArr.push(new AboutCompanyContent(this.content.substring(prevIdx, i)));
+                prevIdx = i;
+            }
+        }
+        this.contentArr.push(new AboutCompanyContent(this.content.substring(prevIdx, this.content.length)));
+        for (var i = 0; i < this.contentArr.length; i++) {
+            while (this.contentArr[i].content.indexOf('<link>') > 0) {
+                var startIdx = this.contentArr[i].content.indexOf('<link>');
+                var endIdx = this.contentArr[i].content.indexOf(')', startIdx);
+                this.contentArr[i].push(this.contentArr[i].content.substring(startIdx + 7, endIdx));
+                this.contentArr[i].content
+                    = this.contentArr[i].content.substring(0, startIdx)
+                        + this.contentArr[i].content.substr(endIdx + 1, this.contentArr[i].content.length - endIdx - 1);
+            }
+            this.contentArr[i].toString();
+        }
     }
     AboutCompany.CONTENT_TYPE_ID = 'about_company';
     return AboutCompany;
+}());
+
+var AboutCompanyContent = /** @class */ (function () {
+    function AboutCompanyContent(content) {
+        this.content = content;
+        this.imgSources = new Array();
+    }
+    AboutCompanyContent.prototype.push = function (imgSrc) {
+        this.imgSources.push(imgSrc);
+    };
+    AboutCompanyContent.prototype.toString = function () {
+        for (var i = 0; i < this.imgSources.length; i++) {
+            console.log(this.imgSources[i]);
+        }
+    };
+    return AboutCompanyContent;
 }());
 
 
@@ -1516,6 +1654,54 @@ var FooterContent = /** @class */ (function () {
     }
     FooterContent.CONTENT_TYPE = 'footer_caption';
     return FooterContent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/common/entities/gallery-header.ts":
+/*!***********************************************!*\
+  !*** ./src/common/entities/gallery-header.ts ***!
+  \***********************************************/
+/*! exports provided: GalleryHeader */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GalleryHeader", function() { return GalleryHeader; });
+var GalleryHeader = /** @class */ (function () {
+    function GalleryHeader(content) {
+        this.content = content;
+    }
+    GalleryHeader.CONTENT_TYPE_ID = 'gallery-header';
+    return GalleryHeader;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/common/entities/gallery-image.ts":
+/*!**********************************************!*\
+  !*** ./src/common/entities/gallery-image.ts ***!
+  \**********************************************/
+/*! exports provided: GalleryImage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GalleryImage", function() { return GalleryImage; });
+var GalleryImage = /** @class */ (function () {
+    function GalleryImage(assetId, content) {
+        this.assetId = assetId;
+        this.content = content;
+        this.shortenedContent = this.content.length < 100
+            ? this.content
+            : this.content.substr(0, 100) + '...';
+    }
+    GalleryImage.CONTENT_TYPE_ID = 'gallery-photo';
+    return GalleryImage;
 }());
 
 
@@ -1807,11 +1993,11 @@ var BusService = /** @class */ (function () {
     function BusService() {
         this.entryStorage = [];
     }
-    BusService.prototype.call = function (id) {
+    BusService.prototype.call = function (id, ctx) {
         console.log(this.entryStorage.length);
         var entry = this.findEntry(id);
         if (entry !== null) {
-            entry.emitter.next(entry.pingable);
+            entry.emitter.next({ pingable: entry.pingable, context: ctx });
         }
     };
     BusService.prototype.register = function (obj, entryId) {
@@ -1902,7 +2088,11 @@ var CallingBusService = /** @class */ (function () {
     CallingBusService.prototype.callForm = function () {
         this.busService.call(CallingBusService_1.FORM);
     };
+    CallingBusService.prototype.callPhotoForm = function (context) {
+        this.busService.call(CallingBusService_1.SHOW_PHOTO_FORM, context);
+    };
     CallingBusService.FORM = 'form';
+    CallingBusService.SHOW_PHOTO_FORM = 'show-photo-form';
     CallingBusService = CallingBusService_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
         __metadata("design:paramtypes", [_bus_service__WEBPACK_IMPORTED_MODULE_1__["BusService"]])
@@ -2040,7 +2230,7 @@ var ModalService = /** @class */ (function () {
 /*!*******************************************!*\
   !*** ./src/common/mappingLayer/mapper.ts ***!
   \*******************************************/
-/*! exports provided: mapAboutCompany, mapImage, mapNavigationMenuItem, mapContact, mapFooterContent, mapMotto, mapActivity, mapRequisites */
+/*! exports provided: mapAboutCompany, mapImage, mapNavigationMenuItem, mapContact, mapFooterContent, mapMotto, mapActivity, mapRequisites, mapGalleryImage, mapGalleryHeader */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2053,6 +2243,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapMotto", function() { return mapMotto; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapActivity", function() { return mapActivity; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapRequisites", function() { return mapRequisites; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapGalleryImage", function() { return mapGalleryImage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapGalleryHeader", function() { return mapGalleryHeader; });
 /* harmony import */ var _entities_about_company__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../entities/about-company */ "./src/common/entities/about-company.ts");
 /* harmony import */ var _entities_image__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../entities/image */ "./src/common/entities/image.ts");
 /* harmony import */ var _entities_navigation_menu_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../entities/navigation-menu-item */ "./src/common/entities/navigation-menu-item.ts");
@@ -2061,6 +2253,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _entities_motto__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../entities/motto */ "./src/common/entities/motto.ts");
 /* harmony import */ var _entities_activity__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../entities/activity */ "./src/common/entities/activity.ts");
 /* harmony import */ var _entities_requisites__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../entities/requisites */ "./src/common/entities/requisites.ts");
+/* harmony import */ var _entities_gallery_image__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../entities/gallery-image */ "./src/common/entities/gallery-image.ts");
+/* harmony import */ var _entities_gallery_header__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../entities/gallery-header */ "./src/common/entities/gallery-header.ts");
+
+
 
 
 
@@ -2070,7 +2266,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function mapAboutCompany(item) {
-    return new _entities_about_company__WEBPACK_IMPORTED_MODULE_0__["AboutCompany"](item.fields.title, item.fields.about);
+    return new _entities_about_company__WEBPACK_IMPORTED_MODULE_0__["AboutCompany"](item.fields.header, item.fields.content);
 }
 function mapImage(item) {
     return new _entities_image__WEBPACK_IMPORTED_MODULE_1__["Image"](item.fields.content.sys.id, item.fields.name);
@@ -2109,6 +2305,12 @@ function mapRequisites(item) {
         item.fields.line4,
         item.fields.line5
     ]);
+}
+function mapGalleryImage(item) {
+    return new _entities_gallery_image__WEBPACK_IMPORTED_MODULE_8__["GalleryImage"](item.fields.image.sys.id, item.fields.content);
+}
+function mapGalleryHeader(item) {
+    return new _entities_gallery_header__WEBPACK_IMPORTED_MODULE_9__["GalleryHeader"](item.fields.content);
 }
 
 
@@ -2971,7 +3173,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\amarakhovskyi\Documents\GitHub\vipra-project-repository\vipra-frontend\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! D:\Projects\Vipra\vipra-project-repository\vipra-frontend\src\main.ts */"./src/main.ts");
 
 
 /***/ })

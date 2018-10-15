@@ -621,9 +621,9 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\amarakhovskyi\Documents\GitHub\vipra-project-repository\vipra-frontend\src\styles.css */"./src/styles.css");
-__webpack_require__(/*! C:\Users\amarakhovskyi\Documents\GitHub\vipra-project-repository\vipra-frontend\node_modules\leaflet\dist\leaflet.css */"./node_modules/leaflet/dist/leaflet.css");
-module.exports = __webpack_require__(/*! C:\Users\amarakhovskyi\Documents\GitHub\vipra-project-repository\vipra-frontend\node_modules\roboto-fontface\css\roboto\roboto-fontface.css */"./node_modules/roboto-fontface/css/roboto/roboto-fontface.css");
+__webpack_require__(/*! D:\Projects\Vipra\vipra-project-repository\vipra-frontend\src\styles.css */"./src/styles.css");
+__webpack_require__(/*! D:\Projects\Vipra\vipra-project-repository\vipra-frontend\node_modules\leaflet\dist\leaflet.css */"./node_modules/leaflet/dist/leaflet.css");
+module.exports = __webpack_require__(/*! D:\Projects\Vipra\vipra-project-repository\vipra-frontend\node_modules\roboto-fontface\css\roboto\roboto-fontface.css */"./node_modules/roboto-fontface/css/roboto/roboto-fontface.css");
 
 
 /***/ })
